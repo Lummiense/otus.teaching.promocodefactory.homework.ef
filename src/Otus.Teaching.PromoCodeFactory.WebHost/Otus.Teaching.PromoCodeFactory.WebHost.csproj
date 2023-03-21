@@ -19,11 +19,13 @@
         <PrivateAssets>all</PrivateAssets>
         <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
       </PackageReference>
+      <PackageReference Include="Microsoft.EntityFrameworkCore.Sqlite" Version="5.0.17" />
       <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="5.0.17">
         <PrivateAssets>all</PrivateAssets>
         <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
       </PackageReference>
       <PackageReference Include="NSwag.AspNetCore" Version="13.5.0" />
+      <PackageReference Include="SQLite" Version="3.13.0" />
     </ItemGroup>
 
 </Project>
