@@ -1,13 +1,14 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using Microsoft.EntityFrameworkCore;
 using Otus.Teaching.PromoCodeFactory.Core.Domain.Administration;
 using Otus.Teaching.PromoCodeFactory.Core.Domain.PromoCodeManagement;
 
 namespace Otus.Teaching.PromoCodeFactory.DataAccess.Data
 {
-    public static class FakeDataFactory
-    {
+    public static class FakeDataFactory   {
+
         public static IEnumerable<Employee> Employees => new List<Employee>()
         {
             new Employee()

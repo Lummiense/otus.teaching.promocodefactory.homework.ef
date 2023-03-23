@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Otus.Teaching.PromoCodeFactory.Core.Domain.Administration
 {
@@ -12,7 +13,8 @@ namespace Otus.Teaching.PromoCodeFactory.Core.Domain.Administration
         public string FullName => $"{FirstName} {LastName}";
 
         public string Email { get; set; }
-
+        [ForeignKey("Role")]
+        public Guid RoleId { get; set; }
         public Role Role { get; set; }
 
         public int AppliedPromocodesCount { get; set; }

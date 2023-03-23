@@ -74,5 +74,12 @@ namespace Otus.Teaching.PromoCodeFactory.DataAccess.Repositories
             var result = _dbContext.Update(entity);
             return Task.FromResult(result);
         }
+
+        public async Task SaveChangesAsync()
+        {
+            await _dbContext.SaveChangesAsync();
+        }
+
+        
     }
 }

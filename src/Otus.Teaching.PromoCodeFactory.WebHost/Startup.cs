@@ -22,12 +22,16 @@ namespace Otus.Teaching.PromoCodeFactory.WebHost
     {
         // This method gets called by the runtime. Use this method to add services to the container.
         // For more information on how to configure your application, visit https://go.microsoft.com/fwlink/?LinkID=398940
-        public IConfiguration Configuration { get; }
+        private IConfiguration Configuration;
+        public Startup (IConfiguration configuration)
+        {
+            Configuration = configuration;
+        }
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllers();
-            services.AddDbContext<DataContext>((x =>
-                x.UseSqlite(Configuration.GetConnectionString("ConnectionString"))));
+            services.AddDbContext<DataContext>(x => 
+                x.UseSqlite(Configuration.GetConnectionString("db")));
             services.AddScoped(typeof(IRepository<Employee>), (x) => 
                 new InMemoryRepository<Employee>(FakeDataFactory.Employees));
             services.AddScoped(typeof(IRepository<Role>), (x) => 
