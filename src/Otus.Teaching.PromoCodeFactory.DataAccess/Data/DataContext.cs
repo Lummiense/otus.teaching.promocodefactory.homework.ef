@@ -20,8 +20,12 @@ namespace Otus.Teaching.PromoCodeFactory.DataAccess.Data
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
+            base.OnModelCreating(modelBuilder);
             modelBuilder.Entity<Employee>().HasData(FakeDataFactory.Employees);
+           // modelBuilder.Entity<Employee>().HasOne(r => r.Role).WithMany(e => e.Employees).HasForeignKey(k=>k.RoleId);
+
             modelBuilder.Entity<Role>().HasData(FakeDataFactory.Roles);
+           
             modelBuilder.Entity<Preference>().HasData(FakeDataFactory.Preferences);
             modelBuilder.Entity<Customer>().HasData(FakeDataFactory.Customers);
         }
