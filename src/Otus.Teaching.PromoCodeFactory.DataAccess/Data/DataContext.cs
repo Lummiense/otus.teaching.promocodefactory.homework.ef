@@ -22,7 +22,7 @@ namespace Otus.Teaching.PromoCodeFactory.DataAccess.Data
         {
             base.OnModelCreating(modelBuilder);
             modelBuilder.Entity<Employee>().HasData(FakeDataFactory.Employees);
-           // modelBuilder.Entity<Employee>().HasOne(r => r.Role).WithMany(e => e.Employees).HasForeignKey(k=>k.RoleId);
+            modelBuilder.Entity<Employee>().HasOne(r => r.Role).WithMany(e => e.Employees).HasForeignKey(f=>f.RoleId);
 
             modelBuilder.Entity<Role>().HasData(FakeDataFactory.Roles);
            
