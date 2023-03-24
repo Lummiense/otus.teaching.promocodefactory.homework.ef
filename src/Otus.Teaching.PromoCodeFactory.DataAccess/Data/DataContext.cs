@@ -28,6 +28,8 @@ namespace Otus.Teaching.PromoCodeFactory.DataAccess.Data
            
             modelBuilder.Entity<Preference>().HasData(FakeDataFactory.Preferences);
             modelBuilder.Entity<Customer>().HasData(FakeDataFactory.Customers);
+
+            //TODO: связи для PromocodeManagment entities
         }
     }
    

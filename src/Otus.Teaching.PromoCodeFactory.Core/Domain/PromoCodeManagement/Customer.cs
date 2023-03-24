@@ -12,7 +12,10 @@ namespace Otus.Teaching.PromoCodeFactory.Core.Domain.PromoCodeManagement
         public string FullName => $"{FirstName} {LastName}";
 
         public string Email { get; set; }
+        public List<CustomerPreference> CustomerPreferences { get; set; }
+        public Guid PromoCodeId { get; set; }  
+        public PromoCode PromoCodes { get; set; }
 
-        //TODO: Списки Preferences и Promocodes 
+        
     }
 }
