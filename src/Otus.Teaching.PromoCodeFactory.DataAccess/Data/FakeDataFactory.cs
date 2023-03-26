@@ -86,5 +86,26 @@ namespace Otus.Teaching.PromoCodeFactory.DataAccess.Data
                 return customers;
             }
         }
+        public static IEnumerable<CustomerPreference> CustomerPreferences
+        {
+            get
+            {
+                var customerPereference = new List<CustomerPreference>()
+                {
+                    new CustomerPreference()
+                    {
+                        CustomerId=Guid.Parse("a6c8c6b1-4349-45b0-ab31-244740aaf0f0"),
+                        PreferenceId=Guid.Parse("ef7f299f-92d7-459f-896e-078ed53ef99c")
+                    },
+                    new CustomerPreference()
+                    {
+                        CustomerId=Guid.Parse("a6c8c6b1-4349-45b0-ab31-244740aaf0f0"),
+                        PreferenceId=Guid.Parse("c4bda62e-fc74-4256-a956-4760b3858cbd")
+                    },
+                };
+                return customerPereference;
+
+            }
+        }
     }
 }

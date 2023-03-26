@@ -1,10 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Text;
+
 
 namespace Otus.Teaching.PromoCodeFactory.Core.Domain.PromoCodeManagement
 {
-    public class CustomerPreference:BaseEntity
+    public class CustomerPreference
     {
         public Guid CustomerId { get; set; }
         public Customer Customer { get; set; }

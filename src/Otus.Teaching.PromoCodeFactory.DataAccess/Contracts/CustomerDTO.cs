@@ -1,10 +1,11 @@
-﻿using System;
+﻿using Otus.Teaching.PromoCodeFactory.Core.Domain.PromoCodeManagement;
+using System;
 using System.Collections.Generic;
+using System.Text;
 
-namespace Otus.Teaching.PromoCodeFactory.Core.Domain.PromoCodeManagement
+namespace Otus.Teaching.PromoCodeFactory.DataAccess.Contracts
 {
-    public class Customer
-        :BaseEntity
+    public class CustomerDTO
     {
         public string FirstName { get; set; }
         public string LastName { get; set; }
@@ -14,7 +15,5 @@ namespace Otus.Teaching.PromoCodeFactory.Core.Domain.PromoCodeManagement
         public string Email { get; set; }
         public ICollection<CustomerPreference> CustomerPreferences { get; set; }
         public ICollection<PromoCode> PromoCodes { get; set; }
-
-        
     }
 }

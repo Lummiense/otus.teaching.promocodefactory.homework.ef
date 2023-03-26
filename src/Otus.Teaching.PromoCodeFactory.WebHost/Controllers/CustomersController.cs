@@ -2,6 +2,9 @@
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
+using Otus.Teaching.PromoCodeFactory.Core.Domain.PromoCodeManagement;
+using Otus.Teaching.PromoCodeFactory.DataAccess.Repositories;
 using Otus.Teaching.PromoCodeFactory.WebHost.Models;
 
 namespace Otus.Teaching.PromoCodeFactory.WebHost.Controllers
@@ -12,8 +15,10 @@ namespace Otus.Teaching.PromoCodeFactory.WebHost.Controllers
     [ApiController]
     [Route("api/v1/[controller]")]
     public class CustomersController
-        : ControllerBase
+        
     {
+        
+
         [HttpGet]
         public Task<ActionResult<CustomerShortResponse>> GetCustomersAsync()
         {
