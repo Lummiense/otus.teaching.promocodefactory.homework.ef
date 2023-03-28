@@ -11,14 +11,14 @@ namespace Otus.Teaching.PromoCodeFactory.DataAccess.Repositories
         : IRepository<T>
         where T: BaseEntity
     {
-        protected IEnumerable<T> Data { get; set; }
+        protected ICollection<T> Data { get; set; }
 
-        public InMemoryRepository(IEnumerable<T> data)
+        public InMemoryRepository(ICollection<T> data)
         {
             Data = data;
         }
         
-        public Task<IEnumerable<T>> GetAllAsync()
+        public Task<ICollection<T>> GetAllAsync()
         {
             return Task.FromResult(Data);
         }
@@ -44,6 +44,11 @@ namespace Otus.Teaching.PromoCodeFactory.DataAccess.Repositories
         }
 
         public Task SaveChangesAsync()
+        {
+            throw new NotImplementedException();
+        }
+
+        Task<List<T>> IRepository<T>.GetAllAsync()
         {
             throw new NotImplementedException();
         }

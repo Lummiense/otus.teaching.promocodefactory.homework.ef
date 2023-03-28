@@ -15,7 +15,7 @@ namespace Otus.Teaching.PromoCodeFactory.DataAccess.Repositories
       where T : BaseEntity
     {
         protected readonly DbContext _dbContext;
-        protected EfRepository(DbContext dbContext)
+        public EfRepository(DbContext dbContext)
         {
             _dbContext = dbContext;
         }
@@ -24,9 +24,9 @@ namespace Otus.Teaching.PromoCodeFactory.DataAccess.Repositories
         /// Получить из БД список всех сущностей
         /// </summary>
         /// <returns>Список сущностей</returns>
-        public Task<IEnumerable<T>> GetAllAsync()
+        public Task<List<T>> GetAllAsync()
         {
-            var result = _dbContext.Set<T>().ToList().AsEnumerable();
+            var result = _dbContext.Set<T>().ToList();
             return Task.FromResult(result);
         }
 

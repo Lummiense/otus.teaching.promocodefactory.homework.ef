@@ -16,6 +16,7 @@ using Otus.Teaching.PromoCodeFactory.Core.Domain.PromoCodeManagement;
 using Otus.Teaching.PromoCodeFactory.DataAccess.Data;
 using Otus.Teaching.PromoCodeFactory.DataAccess.Repositories;
 using AutoMapper;
+using Otus.Teaching.PromoCodeFactory.DataAccess.Services;
 
 namespace Otus.Teaching.PromoCodeFactory.WebHost
 {
@@ -35,14 +36,11 @@ namespace Otus.Teaching.PromoCodeFactory.WebHost
             services.AddAutoMapper(typeof(Startup));
             services.AddDbContext<DataContext>(x => 
                 x.UseSqlite(Configuration.GetConnectionString("db")));
-            services.AddScoped(typeof(IRepository<Employee>), (x) => 
-                new InMemoryRepository<Employee>(FakeDataFactory.Employees));
-            services.AddScoped(typeof(IRepository<Role>), (x) => 
-                new InMemoryRepository<Role>(FakeDataFactory.Roles));
-            services.AddScoped(typeof(IRepository<Preference>), (x) => 
-                new InMemoryRepository<Preference>(FakeDataFactory.Preferences));
-            services.AddScoped(typeof(IRepository<Customer>), (x) => 
-                new InMemoryRepository<Customer>(FakeDataFactory.Customers));
+            services.AddScoped(typeof(IRepository<Employee>), typeof(EfRepository<Employee>));
+            services.AddScoped(typeof(IRepository<Role>), typeof(EfRepository<Role>));
+            services.AddScoped(typeof(IRepository<Preference>), typeof(EfRepository<Preference>));
+            services.AddScoped(typeof(IRepository<Customer>), typeof(EfRepository<Customer>));
+            //services.AddScoped<ICustomerService, CustomerService>();
 
 
             services.AddOpenApiDocument(options =>
@@ -63,7 +61,7 @@ namespace Otus.Teaching.PromoCodeFactory.WebHost
             {
                 app.UseHsts();
             }
-
+            //TODO: Добавить обработку исключений
             app.UseOpenApi();
             app.UseSwaggerUi3(x =>
             {
