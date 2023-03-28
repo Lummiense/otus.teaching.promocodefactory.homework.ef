@@ -3,6 +3,7 @@ using Microsoft.EntityFrameworkCore;
 using Otus.Teaching.PromoCodeFactory.Core.Abstractions.Repositories;
 using Otus.Teaching.PromoCodeFactory.Core.Domain.PromoCodeManagement;
 using Otus.Teaching.PromoCodeFactory.DataAccess.Contracts;
+using Otus.Teaching.PromoCodeFactory.DataAccess.Data;
 using Otus.Teaching.PromoCodeFactory.DataAccess.Repositories;
 using System;
 using System.Collections.Generic;
@@ -15,7 +16,7 @@ namespace Otus.Teaching.PromoCodeFactory.DataAccess.Services
     {
         private readonly IMapper _mapper;
         private readonly ICustomerService _customerService;
-        public CustomerService(ICustomerService customerService, IMapper mapper,DbContext dbContext):base(dbContext)
+        public CustomerService(ICustomerService customerService, IMapper mapper,DataContext dbContext):base(dbContext)
         {
             _customerService = customerService;
            _mapper = mapper;

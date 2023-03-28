@@ -1,6 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Otus.Teaching.PromoCodeFactory.Core.Abstractions.Repositories;
 using Otus.Teaching.PromoCodeFactory.Core.Domain;
+using Otus.Teaching.PromoCodeFactory.DataAccess.Data;
 using System;
 using System.Collections.Generic;
 using System.Collections.Immutable;
@@ -14,8 +15,8 @@ namespace Otus.Teaching.PromoCodeFactory.DataAccess.Repositories
         public class EfRepository <T> : IRepository<T>
       where T : BaseEntity
     {
-        protected readonly DbContext _dbContext;
-        public EfRepository(DbContext dbContext)
+        protected readonly DataContext _dbContext;
+        public EfRepository(DataContext dbContext)
         {
             _dbContext = dbContext;
         }
