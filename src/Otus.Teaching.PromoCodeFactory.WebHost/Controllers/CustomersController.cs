@@ -1,10 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
+using AutoMapper;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Otus.Teaching.PromoCodeFactory.Core.Domain.PromoCodeManagement;
 using Otus.Teaching.PromoCodeFactory.DataAccess.Repositories;
+using Otus.Teaching.PromoCodeFactory.DataAccess.Services;
 using Otus.Teaching.PromoCodeFactory.WebHost.Models;
 
 namespace Otus.Teaching.PromoCodeFactory.WebHost.Controllers
@@ -17,13 +19,20 @@ namespace Otus.Teaching.PromoCodeFactory.WebHost.Controllers
     public class CustomersController
         
     {
-        
+        private ICustomerService _customerService;
+        private IMapper _mapper;
+               
+        public CustomersController(ICustomerService customerService, IMapper mapper)
+        {
+            _customerService = customerService;
+            _mapper = mapper;
+        }
 
         [HttpGet]
-        public Task<ActionResult<CustomerShortResponse>> GetCustomersAsync()
+        public async Task<ActionResult<CustomerShortResponse>> GetCustomersAsync()
         {
-            //TODO: Добавить получение списка клиентов
-            throw new NotImplementedException();
+            var entities = await _customerService.GetAllAsync();
+            return Ok(_mapper.Map<List<CustomerShortResponse>>(entities));
         }
         
         [HttpGet("{id}")]

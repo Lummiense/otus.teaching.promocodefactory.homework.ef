@@ -13,8 +13,8 @@ namespace Otus.Teaching.PromoCodeFactory.DataAccess.DataConfiguration
         public void Configure(EntityTypeBuilder<CustomerPreference> builder)
         {
             builder.HasKey(k => new { k.CustomerId, k.PreferenceId });
-            builder.HasOne(c => c.Customer).WithMany(cp => cp.CustomerPreferences).HasForeignKey(fk => fk.CustomerId);
-            builder.HasOne(p => p.Preference).WithMany(cp => cp.CustomerPreferences).HasForeignKey(fk => fk.PreferenceId);
+            builder.HasOne(k => k.Customer).WithMany(k => k.CustomerPreferences).HasForeignKey(k => k.CustomerId);
+            builder.HasOne(k => k.Preference).WithMany(k => k.CustomerPreferences).HasForeignKey(k => k.PreferenceId);
         }
     }
 }

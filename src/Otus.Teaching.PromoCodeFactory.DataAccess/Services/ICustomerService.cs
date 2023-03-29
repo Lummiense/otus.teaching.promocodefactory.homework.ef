@@ -10,10 +10,10 @@ namespace Otus.Teaching.PromoCodeFactory.DataAccess.Services
 {
     public interface ICustomerService:IRepository<Customer>
     {
-        Task<Customer> GetCustomerAsync(Guid id);
-        Task<ICollection<Customer>> GetCustomersAsync(CustomerDTO customerDTO);
-        Task<Guid> CreateCustomerAsync(CustomerDTO customerDTO);
-        Task EditCustomersAsync(Guid id, CustomerDTO customerDTO);
-        Task DeleteCustomer(Guid id);
+        Task<Customer> GetByIdAsync(Guid id);
+        Task<ICollection<CustomerDTO>> GetAllAsync();
+        Task AddAsync(CustomerDTO customerDTO);
+        Task UpdateAsync(CustomerDTO customerDTO);
+        Task DeleteAsync(Guid id);
     }
 }

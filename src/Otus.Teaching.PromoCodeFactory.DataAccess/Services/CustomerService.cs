@@ -12,21 +12,29 @@ using System.Threading.Tasks;
 
 namespace Otus.Teaching.PromoCodeFactory.DataAccess.Services
 {
-    public class CustomerService : EfRepository<Customer>
+    public class CustomerService : EfRepository<Customer>,ICustomerService
     {
         private readonly IMapper _mapper;
-        private readonly ICustomerService _customerService;
-        public CustomerService(ICustomerService customerService, IMapper mapper,DataContext dbContext):base(dbContext)
-        {
+        //private readonly ICustomerService _customerService;
+        private readonly EfRepository<Customer> _customerRepository;
+        /*public CustomerService(ICustomerService customerService, IMapper mapper,EfRepository<Customer> customerRepository, DataContext dbContext):base(dbContext)
+         {
             _customerService = customerService;
            _mapper = mapper;
+            _customerRepository = customerRepository;
+        }*/
+        public CustomerService(IMapper mapper, EfRepository<Customer> customerRepository, DataContext dbContext) : base(dbContext)
+        {
+           // _customerService = customerService;
+           _mapper = mapper;
+            _customerRepository = customerRepository;
         }
 
         public async Task AddAsync(CustomerDTO customerDTO)
         {
             var entity = _mapper.Map<CustomerDTO,Customer>(customerDTO);
-            await _customerService.AddAsync(entity); 
-            await _customerService.SaveChangesAsync();            
+            await _customerRepository.AddAsync(entity); 
+            await _customerRepository.SaveChangesAsync();            
         }
 
         /*public Task<Guid> CreateCustomerAsync(CustomerDTO customerDTO)
@@ -36,8 +44,8 @@ namespace Otus.Teaching.PromoCodeFactory.DataAccess.Services
 
         public async Task DeleteAsync(Guid id)
         {
-            await _customerService.DeleteAsync(id);
-            await _customerService.SaveChangesAsync();
+            await _customerRepository.DeleteAsync(id);
+            await _customerRepository.SaveChangesAsync();
         }
 
         /*public Task DeleteCustomer(Guid id)
@@ -52,13 +60,13 @@ namespace Otus.Teaching.PromoCodeFactory.DataAccess.Services
 
         public async Task<ICollection<CustomerDTO>> GetAllAsync()
         {
-            ICollection<Customer> entities = await _customerService.GetAllAsync();
+            ICollection<Customer> entities = await _customerRepository.GetAllAsync();
             return _mapper.Map<ICollection<Customer>, ICollection<CustomerDTO>>(entities);
         }
 
         public async Task<CustomerDTO> GetByIdAsync(Guid id)
         {
-            var entity = await _customerService.GetByIdAsync(id);
+            var entity = await _customerRepository.GetByIdAsync(id);
             return _mapper.Map<Customer,CustomerDTO>(entity);
         }
 
@@ -75,8 +83,8 @@ namespace Otus.Teaching.PromoCodeFactory.DataAccess.Services
         public async Task UpdateAsync(CustomerDTO customerDTO)
         {
             var entity = _mapper.Map<CustomerDTO,Customer>(customerDTO);
-            await _customerService.UpdateAsync(entity);
-            await _customerService.SaveChangesAsync();
+            await _customerRepository.UpdateAsync(entity);
+            await _customerRepository.SaveChangesAsync();
         }
     }
 }
