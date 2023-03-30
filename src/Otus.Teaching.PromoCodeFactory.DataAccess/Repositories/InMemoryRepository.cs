@@ -17,23 +17,23 @@ namespace Otus.Teaching.PromoCodeFactory.DataAccess.Repositories
         {
             Data = data;
         }
-        
-        public Task<ICollection<T>> GetAllAsync()
-        {
-            return Task.FromResult(Data);
-        }
 
-        public Task<T> GetByIdAsync(Guid id)
-        {
-            return Task.FromResult(Data.FirstOrDefault(x => x.Id == id));
-        }
-
-        public Task AddAsync(T entity)
+        public Task<List<T>> GetAllAsync()
         {
             throw new NotImplementedException();
         }
 
-        public Task UpdateAsync(T entity)
+        public Task<T> GetByIdAsync(Guid id)
+        {
+            throw new NotImplementedException();
+        }
+
+        public Task<Guid> AddAsync(T entity)
+        {
+            throw new NotImplementedException();
+        }
+
+        public Task<Guid> UpdateAsync(T entity)
         {
             throw new NotImplementedException();
         }
@@ -44,11 +44,6 @@ namespace Otus.Teaching.PromoCodeFactory.DataAccess.Repositories
         }
 
         public Task SaveChangesAsync()
-        {
-            throw new NotImplementedException();
-        }
-
-        Task<List<T>> IRepository<T>.GetAllAsync()
         {
             throw new NotImplementedException();
         }

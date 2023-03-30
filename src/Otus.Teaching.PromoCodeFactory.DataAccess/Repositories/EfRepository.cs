@@ -27,7 +27,7 @@ namespace Otus.Teaching.PromoCodeFactory.DataAccess.Repositories
         /// <returns>Список сущностей</returns>
         public Task<List<T>> GetAllAsync()
         {
-            var result = _dbContext.Set<T>().ToList();
+            var result = _dbContext.Set<T>().ToList();            
             return Task.FromResult(result);
         }
 
@@ -47,10 +47,11 @@ namespace Otus.Teaching.PromoCodeFactory.DataAccess.Repositories
         /// </summary>
         /// <param name="entity">Сущность для добавления</param>
         /// <returns>???</returns>
-        public Task AddAsync(T entity)
+        public Task <Guid> AddAsync(T entity) 
         {
             var result = _dbContext.Add(entity);
-            return Task.FromResult(result);
+            _dbContext.SaveChangesAsync();
+            return Task.FromResult(result.Entity.Id);
         }
 
         /// <summary>
@@ -62,6 +63,7 @@ namespace Otus.Teaching.PromoCodeFactory.DataAccess.Repositories
         {
             var entity = _dbContext.Set<T>().FirstOrDefault(x => x.Id == id);
             var result = _dbContext.Remove(entity);
+            _dbContext.SaveChangesAsync();
             return Task.FromResult(result);
         }
 
@@ -70,10 +72,11 @@ namespace Otus.Teaching.PromoCodeFactory.DataAccess.Repositories
         /// </summary>
         /// <param name="entity">Обновленная сущность</param>
         /// <returns>???</returns>
-        public Task UpdateAsync(T entity)
+        public Task <Guid> UpdateAsync(T entity)
         {
             var result = _dbContext.Update(entity);
-            return Task.FromResult(result);
+            _dbContext.SaveChangesAsync();
+            return Task.FromResult(result.Entity.Id);
         }
 
         public async Task SaveChangesAsync()

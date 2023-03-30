@@ -8,12 +8,13 @@ using System.Threading.Tasks;
 
 namespace Otus.Teaching.PromoCodeFactory.DataAccess.Services
 {
-    public interface ICustomerService:IRepository<Customer>
-    {
-        Task<Customer> GetByIdAsync(Guid id);
-        Task<ICollection<CustomerDTO>> GetAllAsync();
-        Task AddAsync(CustomerDTO customerDTO);
-        Task UpdateAsync(CustomerDTO customerDTO);
-        Task DeleteAsync(Guid id);
+    public interface ICustomerService
+    {       
+
+        Task<Guid> AddCustomerAsync(CustomerDTO customerDTO);     
+        Task DeleteCustomerAsync(Guid id);
+        Task<CustomerDTO> GetCustomerByIdAsync(Guid id);
+        Task<ICollection<CustomerDTO>> GetAllCustomersAsync();
+        Task <Guid> UpdateCustomerAsync(CustomerDTO customerDTO);
     }
 }

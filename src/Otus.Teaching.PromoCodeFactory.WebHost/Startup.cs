@@ -36,11 +36,12 @@ namespace Otus.Teaching.PromoCodeFactory.WebHost
             services.AddAutoMapper(typeof(Startup));
             services.AddDbContext<DataContext>(x => 
                 x.UseSqlite(Configuration.GetConnectionString("db")));
-            services.AddScoped(typeof(IRepository<Employee>), typeof(EfRepository<Employee>));
+          /*  services.AddScoped(typeof(IRepository<Employee>), typeof(EfRepository<Employee>));
             services.AddScoped(typeof(IRepository<Role>), typeof(EfRepository<Role>));
             services.AddScoped(typeof(IRepository<Preference>), typeof(EfRepository<Preference>));
-            services.AddScoped(typeof(IRepository<Customer>), typeof(EfRepository<Customer>));
-            //services.AddScoped<ICustomerService, CustomerService>();
+            services.AddScoped(typeof(IRepository<Customer>), typeof(EfRepository<Customer>));*/
+            services.AddTransient(typeof(IRepository<>), typeof(EfRepository<>));
+            services.AddTransient<ICustomerService, CustomerService>();
 
 
             services.AddOpenApiDocument(options =>
