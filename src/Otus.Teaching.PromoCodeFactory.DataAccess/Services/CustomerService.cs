@@ -29,7 +29,7 @@ namespace Otus.Teaching.PromoCodeFactory.DataAccess.Services
         /// <returns>ID добавленного пользователя</returns>
         public async Task <Guid> AddCustomerAsync(CustomerDTO customerDTO)
         {
-            var entity = _mapper.Map<CustomerDTO,Customer>(customerDTO);
+            var entity = _mapper.Map<Customer>(customerDTO);
             var result = await _customerRepository.AddAsync(entity); 
             await _customerRepository.SaveChangesAsync();   
             return result;
@@ -50,8 +50,8 @@ namespace Otus.Teaching.PromoCodeFactory.DataAccess.Services
         /// <returns>Список пользователей</returns>
         public async Task<ICollection<CustomerDTO>> GetAllCustomersAsync()
         {
-            ICollection<Customer> entities = await _customerRepository.GetAllAsync();
-            return _mapper.Map<ICollection<Customer>, ICollection<CustomerDTO>>(entities);
+            List<Customer> entities = await _customerRepository.GetAllAsync();
+            return _mapper.Map<List<CustomerDTO>>(entities);
         }
         /// <summary>
         /// Получение пользователя по ID
@@ -61,7 +61,7 @@ namespace Otus.Teaching.PromoCodeFactory.DataAccess.Services
         public async Task<CustomerDTO> GetCustomerByIdAsync(Guid id)
         {
             var entity = await _customerRepository.GetByIdAsync(id);
-            return _mapper.Map<Customer,CustomerDTO>(entity);
+            return _mapper.Map<CustomerDTO>(entity);
         }   
           
         /// <summary>
@@ -71,7 +71,7 @@ namespace Otus.Teaching.PromoCodeFactory.DataAccess.Services
         /// <returns>ID обновленного пользователя</returns>
         public async Task <Guid> UpdateCustomerAsync(CustomerDTO customerDTO)
         {
-            var entity = _mapper.Map<CustomerDTO,Customer>(customerDTO);
+            var entity = _mapper.Map<Customer>(customerDTO);
             var result = await _customerRepository.UpdateAsync(entity);
             await _customerRepository.SaveChangesAsync();
             return result;

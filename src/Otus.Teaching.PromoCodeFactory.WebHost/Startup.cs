@@ -17,6 +17,9 @@ using Otus.Teaching.PromoCodeFactory.DataAccess.Data;
 using Otus.Teaching.PromoCodeFactory.DataAccess.Repositories;
 using AutoMapper;
 using Otus.Teaching.PromoCodeFactory.DataAccess.Services;
+using Otus.Teaching.PromoCodeFactory.DataAccess.Mapping;
+using Otus.Teaching.PromoCodeFactory.DataAccess.DataConfiguration;
+using Otus.Teaching.PromoCodeFactory.WebHost.Mapping;
 
 namespace Otus.Teaching.PromoCodeFactory.WebHost
 {
@@ -32,8 +35,9 @@ namespace Otus.Teaching.PromoCodeFactory.WebHost
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllers();
-            
-            services.AddAutoMapper(typeof(Startup));
+
+            //services.AddAutoMapper(typeof(CustomerMappingProfile));
+            InstallAutoMapper(services);
             services.AddDbContext<DataContext>(x => 
                 x.UseSqlite(Configuration.GetConnectionString("db")));
           /*  services.AddScoped(typeof(IRepository<Employee>), typeof(EfRepository<Employee>));
@@ -77,6 +81,27 @@ namespace Otus.Teaching.PromoCodeFactory.WebHost
             {
                 endpoints.MapControllers();
             });
+
+        }
+        private static IServiceCollection InstallAutoMapper(IServiceCollection services)
+        {
+            services.AddSingleton<IMapper>(new Mapper(GetMapperConfiguration()));
+            return services;
+        }
+
+        private static MapperConfiguration GetMapperConfiguration()
+        {
+            var configuration = new MapperConfiguration(cfg =>
+            {
+                cfg.AddProfile<CustomerViewMapProfile>();
+                cfg.AddProfile<CustomerMappingProfile>();
+               /* cfg.AddProfile<EmployeeMappingProfile>();
+                cfg.AddProfile<PreferenceMappingProfile>();
+                cfg.AddProfile<PromoCodeMappingProfile>();
+                cfg.AddProfile<RoleMappingProfile>();*/
+            });
+            configuration.AssertConfigurationIsValid();
+            return configuration;
         }
     }
 }

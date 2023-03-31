@@ -11,9 +11,8 @@ namespace Otus.Teaching.PromoCodeFactory.DataAccess.Mapping
     {
         public CustomerMappingProfile() 
         { 
-            CreateMap<Customer,CustomerDTO>();
-            CreateMap<CustomerDTO, Customer>()
-                .ForMember(i => i.Id, map => map.Ignore());
+            CreateMap<Customer,CustomerDTO>().ReverseMap();
+           
         }
     }
 }

@@ -29,12 +29,15 @@ namespace Otus.Teaching.PromoCodeFactory.WebHost.Controllers
             _mapper = mapper;
             _customerService = customerService;
         }
-
+        /// <summary>
+        /// Получение списка пользователей
+        /// </summary>
+        /// <returns></returns>
         [HttpGet]
         public async Task<ActionResult<CustomerShortResponse>> GetCustomersAsync()
         {
             var customers = await _customerService.GetAllCustomersAsync();
-            return Ok(_mapper.Map<List<CustomerShortResponse>>(customers));
+            return Ok(_mapper.Map<ICollection<CustomerShortResponse>>(customers));
         }
         
         [HttpGet("{id}")]
