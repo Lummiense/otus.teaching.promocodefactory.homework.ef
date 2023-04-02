@@ -93,12 +93,15 @@ namespace Otus.Teaching.PromoCodeFactory.WebHost
         {
             var configuration = new MapperConfiguration(cfg =>
             {
+                
                 cfg.AddProfile<CustomerViewMapProfile>();
                 cfg.AddProfile<CustomerMappingProfile>();
-               /* cfg.AddProfile<EmployeeMappingProfile>();
-                cfg.AddProfile<PreferenceMappingProfile>();
                 cfg.AddProfile<PromoCodeMappingProfile>();
-                cfg.AddProfile<RoleMappingProfile>();*/
+                cfg.AddProfile<PromoCodeViewMappingProfile>();
+                /* cfg.AddProfile<EmployeeMappingProfile>();
+                 cfg.AddProfile<PreferenceMappingProfile>();
+                 cfg.AddProfile<PromoCodeMappingProfile>();
+                 cfg.AddProfile<RoleMappingProfile>();*/
             });
             configuration.AssertConfigurationIsValid();
             return configuration;

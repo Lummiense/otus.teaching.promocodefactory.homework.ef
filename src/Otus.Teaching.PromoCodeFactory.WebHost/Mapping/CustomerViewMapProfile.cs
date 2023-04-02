@@ -9,15 +9,17 @@ namespace Otus.Teaching.PromoCodeFactory.WebHost.Mapping
     {
         public CustomerViewMapProfile() 
         {
-           // CreateMap<CustomerDTO, CustomerResponse>();
-           /* CreateMap<CustomerResponse, CustomerDTO>().
+            CreateMap<CustomerDTO, CustomerResponse>();
+               // ForMember(dest => dest.PromoCodes, opt => opt.MapFrom(src => src.PromoCodes));
+            /*CreateMap<CustomerResponse, CustomerDTO>().
                   ForMember(c => c.FullName, map => map.Ignore());*/
 
+
             CreateMap<CustomerDTO, CustomerShortResponse>();
-            CreateMap<CustomerShortResponse, CustomerDTO>().
+            /*CreateMap<CustomerShortResponse, CustomerDTO>().
                   ForMember(c => c.FullName, map => map.Ignore()).
                   ForMember(c => c.PromoCodes, map => map.Ignore()).
-                  ForMember(c => c.CustomerPreferences, map => map.Ignore());
+                  ForMember(c => c.CustomerPreferences, map => map.Ignore());*/
 
             //CreateMap<CreateOrEditCustomerRequest, CustomerDTO>();
                 
