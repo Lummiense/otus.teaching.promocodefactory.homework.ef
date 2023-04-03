@@ -11,8 +11,8 @@ namespace Otus.Teaching.PromoCodeFactory.DataAccess.Mapping
     {
         public PromoCodeMappingProfile()
         {
-            CreateMap<PromoCode,PromocodeDTO>();
-            CreateMap<PromocodeDTO, PromoCode>()
+            CreateMap<PromoCode,PromoCodeDTO>();
+            CreateMap<PromoCodeDTO, PromoCode>()
                 .ForMember(i => i.Id, map => map.Ignore())
                 .ForMember(pm => pm.PartnetManagerId, map => map.Ignore())
                 .ForMember(cm => cm.CustomerId, map => map.Ignore())

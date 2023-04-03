@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 using AutoMapper;
 using Microsoft.AspNetCore.Mvc;
@@ -32,29 +33,57 @@ namespace Otus.Teaching.PromoCodeFactory.WebHost.Controllers
         /// <summary>
         /// Получение списка пользователей
         /// </summary>
-        /// <returns></returns>
+        /// <returns>Список пользователей</returns>
         [HttpGet]
         public async Task<ActionResult<CustomerShortResponse>> GetCustomersAsync()
         {
             var customers = await _customerService.GetAllCustomersAsync();
             return Ok(_mapper.Map<ICollection<CustomerShortResponse>>(customers));
         }
-        
+        /// <summary>
+        /// Получение пользователя по id
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns>Пользователь с указанным id</returns>
         [HttpGet("{id}")]
         public async Task<ActionResult<CustomerResponse>> GetCustomerAsync(Guid id)
         {
+            //TODO: Настроить корректную отдачу Preference
             var customer = await _customerService.GetCustomerByIdAsync(id);
             return Ok(_mapper.Map<CustomerResponse>(customer));
         }
-        
+        /// <summary>
+        /// Добавить пользователя
+        /// </summary>
+        /// <param name="request"></param>
+        /// <returns>Ответ с id добавленного пользователя</returns>
         [HttpPost]
         public async Task<IActionResult> CreateCustomerAsync(CreateOrEditCustomerRequest request)
         {
             var customer = _mapper.Map<CustomerDTO>(request);
+            customer.Id = Guid.NewGuid();
+            customer.CustomerPreferences = new List<CustomerPreference>();
+            foreach (var p in request.PreferenceIds)
+            {
+                customer.CustomerPreferences.Add
+                    (
+                        new CustomerPreference
+                        {
+                            PreferenceId = p,
+                            CustomerId = customer.Id
+                        }
+                    );
+
+            }
+        
             var result = await _customerService.AddCustomerAsync(customer);
             return Ok($"Пользователь с ID {result} добавлен");
         }
-        
+        /// <summary>
+        /// Изменить данные пользователя
+        /// </summary>
+        /// <param name="request"></param>
+        /// <returns>Ответ с id измененного пользователя</returns>
         [HttpPut("{id}")]
         public async Task<IActionResult> EditCustomersAsync(CreateOrEditCustomerRequest request)
         {
@@ -63,7 +92,11 @@ namespace Otus.Teaching.PromoCodeFactory.WebHost.Controllers
             //TODO: Обновить данные клиента вместе с его предпочтениями
             return Ok($"Данные пользователя с ID {result} обновлены");
         }
-        
+        /// <summary>
+        /// Удалить пользователя с указанным id
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns>Ответ с id удаленного пользователя</returns>
         [HttpDelete]
         public async Task<IActionResult> DeleteCustomer(Guid id)
         {

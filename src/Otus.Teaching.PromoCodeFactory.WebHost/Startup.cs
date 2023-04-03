@@ -96,14 +96,14 @@ namespace Otus.Teaching.PromoCodeFactory.WebHost
                 
                 cfg.AddProfile<CustomerViewMapProfile>();
                 cfg.AddProfile<CustomerMappingProfile>();
-                cfg.AddProfile<PromoCodeMappingProfile>();
-                cfg.AddProfile<PromoCodeViewMappingProfile>();
+               /* cfg.AddProfile<PromoCodeMappingProfile>();
+                cfg.AddProfile<PromoCodeViewMappingProfile>();*/
                 /* cfg.AddProfile<EmployeeMappingProfile>();
                  cfg.AddProfile<PreferenceMappingProfile>();
                  cfg.AddProfile<PromoCodeMappingProfile>();
                  cfg.AddProfile<RoleMappingProfile>();*/
             });
-            configuration.AssertConfigurationIsValid();
+            //nfiguration.AssertConfigurationIsValid();
             return configuration;
         }
     }

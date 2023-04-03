@@ -70,7 +70,7 @@ namespace Otus.Teaching.PromoCodeFactory.DataAccess.Data
         {
             get
             {
-                var customerId = Guid.Parse("a6c8c6b1-4349-45b0-ab31-244740aaf0f0");
+                var customerId = Guid.Parse("ef7f299f-92d7-459f-896e-078ed53ef99c");
                 var customers = new List<Customer>()
                 {
                     new Customer()

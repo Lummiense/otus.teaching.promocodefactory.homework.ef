@@ -8,9 +8,10 @@ namespace Otus.Teaching.PromoCodeFactory.WebHost.Mapping
     {
         public PromoCodeViewMappingProfile() 
         {
-            CreateMap<PromocodeDTO, PromoCodeShortResponse>().
+            CreateMap<PromoCodeDTO, PromoCodeShortResponse>().
             ForMember(p => p.Id, map => map.Ignore()).
             ForMember(dest => dest.PartnerName, opt => opt.MapFrom(src => src.PartnerManager.FullName));
+            
 
             /*CreateMap<PromoCodeShortResponse, PromocodeDTO>().  
                 ForMember(dest => dest.PartnerManager.FirstName, opt => opt.MapFrom(src=>src.PartnerName)).
