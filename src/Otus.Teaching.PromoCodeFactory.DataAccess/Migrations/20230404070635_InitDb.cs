@@ -131,7 +131,12 @@ namespace Otus.Teaching.PromoCodeFactory.DataAccess.Migrations
             migrationBuilder.InsertData(
                 table: "Customers",
                 columns: new[] { "Id", "Email", "FirstName", "LastName" },
-                values: new object[] { new Guid("a6c8c6b1-4349-45b0-ab31-244740aaf0f0"), "ivan_sergeev@mail.ru", "Иван", "Петров" });
+                values: new object[] { new Guid("ef7f299f-92d7-459f-896e-078ed53ef99c"), "ivan_sergeev@mail.ru", "Иван", "Петров" });
+
+            migrationBuilder.InsertData(
+                table: "Customers",
+                columns: new[] { "Id", "Email", "FirstName", "LastName" },
+                values: new object[] { new Guid("ef7f299f-92d7-459f-896e-078ed53ef97e"), "ivanov@mail.ru", "Иван", "Иванов" });
 
             migrationBuilder.InsertData(
                 table: "Preferences",
@@ -157,6 +162,26 @@ namespace Otus.Teaching.PromoCodeFactory.DataAccess.Migrations
                 table: "Roles",
                 columns: new[] { "Id", "Description", "Name" },
                 values: new object[] { new Guid("b0ae7aac-5493-45cd-ad16-87426a5e7665"), "Партнерский менеджер", "PartnerManager" });
+
+            migrationBuilder.InsertData(
+                table: "CustomerPreferences",
+                columns: new[] { "CustomerId", "PreferenceId" },
+                values: new object[] { new Guid("ef7f299f-92d7-459f-896e-078ed53ef99c"), new Guid("ef7f299f-92d7-459f-896e-078ed53ef99c") });
+
+            migrationBuilder.InsertData(
+                table: "CustomerPreferences",
+                columns: new[] { "CustomerId", "PreferenceId" },
+                values: new object[] { new Guid("ef7f299f-92d7-459f-896e-078ed53ef99c"), new Guid("c4bda62e-fc74-4256-a956-4760b3858cbd") });
+
+            migrationBuilder.InsertData(
+                table: "CustomerPreferences",
+                columns: new[] { "CustomerId", "PreferenceId" },
+                values: new object[] { new Guid("ef7f299f-92d7-459f-896e-078ed53ef97e"), new Guid("c4bda62e-fc74-4256-a956-4760b3858cbd") });
+
+            migrationBuilder.InsertData(
+                table: "CustomerPreferences",
+                columns: new[] { "CustomerId", "PreferenceId" },
+                values: new object[] { new Guid("ef7f299f-92d7-459f-896e-078ed53ef97e"), new Guid("76324c47-68d2-472d-abb8-33cfa8cc0c84") });
 
             migrationBuilder.InsertData(
                 table: "Employees",

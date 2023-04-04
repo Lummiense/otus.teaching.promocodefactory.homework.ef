@@ -8,7 +8,7 @@ namespace Otus.Teaching.PromoCodeFactory.DataAccess.Contracts
     public class PreferenceDTO
     {
         public string Name { get; set; }
-        public ICollection<PromoCode> PromoCodes { get; set; }
-        public ICollection<CustomerPreference> CustomerPreferences { get; set; }
+        public List<PromoCode> PromoCodes { get; set; }
+        public List<Preference> CustomerPreferences { get; set; }
     }
 }

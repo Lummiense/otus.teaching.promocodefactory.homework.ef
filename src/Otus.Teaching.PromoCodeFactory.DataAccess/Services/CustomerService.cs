@@ -7,6 +7,7 @@ using Otus.Teaching.PromoCodeFactory.DataAccess.Data;
 using Otus.Teaching.PromoCodeFactory.DataAccess.Repositories;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -27,9 +28,10 @@ namespace Otus.Teaching.PromoCodeFactory.DataAccess.Services
         /// </summary>
         /// <param name="customerDTO"></param>
         /// <returns>ID добавленного пользователя</returns>
-        public async Task <Guid> AddCustomerAsync(CustomerDTO customerDTO)
+        public async Task<Guid> AddCustomerAsync(CustomerDTO customerDTO)
         {
             var entity = _mapper.Map<Customer>(customerDTO);
+                        
             var result = await _customerRepository.AddAsync(entity); 
             await _customerRepository.SaveChangesAsync();   
             return result;
@@ -61,7 +63,11 @@ namespace Otus.Teaching.PromoCodeFactory.DataAccess.Services
         public async Task<CustomerDTO> GetCustomerByIdAsync(Guid id)
         {
             var entity = await _customerRepository.GetByIdAsync(id);
-            return _mapper.Map<CustomerDTO>(entity);
+            //TODO:: Добавить предпочтения
+           
+            var customer = _mapper.Map<CustomerDTO>(entity);
+            
+            return customer;
         }   
           
         /// <summary>
