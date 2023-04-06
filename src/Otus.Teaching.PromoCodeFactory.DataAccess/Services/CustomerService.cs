@@ -31,7 +31,6 @@ namespace Otus.Teaching.PromoCodeFactory.DataAccess.Services
         public async Task<Guid> AddCustomerAsync(CustomerDTO customerDTO)
         {
             var entity = _mapper.Map<Customer>(customerDTO);
-                        
             var result = await _customerRepository.AddAsync(entity); 
             await _customerRepository.SaveChangesAsync();   
             return result;
@@ -63,10 +62,8 @@ namespace Otus.Teaching.PromoCodeFactory.DataAccess.Services
         public async Task<CustomerDTO> GetCustomerByIdAsync(Guid id)
         {
             var entity = await _customerRepository.GetByIdAsync(id);
-            //TODO:: Добавить предпочтения
-           
-            var customer = _mapper.Map<CustomerDTO>(entity);
-            
+            var customerPreference= entity.CustomerPreferences.Where(x=>x.CustomerId== id).Select(p=>p.Preference).ToList();
+            var customer = _mapper.Map<CustomerDTO>(entity);                      
             return customer;
         }   
           

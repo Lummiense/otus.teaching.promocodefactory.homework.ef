@@ -103,7 +103,7 @@ namespace Otus.Teaching.PromoCodeFactory.WebHost
                  cfg.AddProfile<PromoCodeMappingProfile>();
                  cfg.AddProfile<RoleMappingProfile>();*/
             });
-            //nfiguration.AssertConfigurationIsValid();
+            configuration.AssertConfigurationIsValid();
             return configuration;
         }
     }

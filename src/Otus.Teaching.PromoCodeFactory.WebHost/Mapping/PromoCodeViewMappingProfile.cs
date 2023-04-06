@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using Otus.Teaching.PromoCodeFactory.Core.Domain.PromoCodeManagement;
 using Otus.Teaching.PromoCodeFactory.DataAccess.Contracts;
 using Otus.Teaching.PromoCodeFactory.WebHost.Models;
 
@@ -8,7 +9,7 @@ namespace Otus.Teaching.PromoCodeFactory.WebHost.Mapping
     {
         public PromoCodeViewMappingProfile() 
         {
-            CreateMap<PromoCodeDTO, PromoCodeShortResponse>().
+            CreateMap<PromoCode, PromoCodeShortResponse>().
             ForMember(p => p.Id, map => map.Ignore()).
             ForMember(dest => dest.PartnerName, opt => opt.MapFrom(src => src.PartnerManager.FullName));
             

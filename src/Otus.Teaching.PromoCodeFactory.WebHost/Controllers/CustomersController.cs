@@ -64,9 +64,14 @@ namespace Otus.Teaching.PromoCodeFactory.WebHost.Controllers
         {
             var customer = _mapper.Map<CustomerDTO>(request);
             customer.Id = Guid.NewGuid();
-            
-
-           
+            foreach(var item in request.PreferenceIds)
+            {
+                customer.CustomerPreferences.Add(new CustomerPreference
+                {
+                    PreferenceId = item,
+                    CustomerId = customer.Id
+                });
+            }         
 
             var result = await _customerService.AddCustomerAsync(customer);
             return Ok($"Пользователь с ID {result} добавлен");

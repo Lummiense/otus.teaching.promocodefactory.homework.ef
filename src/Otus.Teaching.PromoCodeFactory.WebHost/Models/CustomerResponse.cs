@@ -13,6 +13,6 @@ namespace Otus.Teaching.PromoCodeFactory.WebHost.Models
 
         public List<Preference> Preferences { get; set; }
         
-       public ICollection<PromoCodeShortResponse> PromoCodes { get; set; }
+       public List<PromoCodeShortResponse> PromoCodes { get; set; }
     }
 }
