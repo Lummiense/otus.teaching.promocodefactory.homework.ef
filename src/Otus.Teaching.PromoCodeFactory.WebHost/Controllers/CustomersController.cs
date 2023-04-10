@@ -64,6 +64,7 @@ namespace Otus.Teaching.PromoCodeFactory.WebHost.Controllers
         {
             var customer = _mapper.Map<CustomerDTO>(request);
             customer.Id = Guid.NewGuid();
+            customer.CustomerPreferences = new List<CustomerPreference>();
             foreach(var item in request.PreferenceIds)
             {
                 customer.CustomerPreferences.Add(new CustomerPreference

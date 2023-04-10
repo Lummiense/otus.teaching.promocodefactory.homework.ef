@@ -61,9 +61,9 @@ namespace Otus.Teaching.PromoCodeFactory.DataAccess.Services
         /// <returns>Пользователь</returns>
         public async Task<CustomerDTO> GetCustomerByIdAsync(Guid id)
         {
-            var entity = await _customerRepository.GetByIdAsync(id);
-            var customerPreference= entity.CustomerPreferences.Where(x=>x.CustomerId== id).Select(p=>p.Preference).ToList();
-            var customer = _mapper.Map<CustomerDTO>(entity);                      
+            var entity = await _customerRepository.GetByIdAsync(id);                      
+            var customer = _mapper.Map<CustomerDTO>(entity);
+            customer.CustomerPreferences = entity.CustomerPreferences.Where(x=>x.CustomerId==id).ToList();
             return customer;
         }   
           

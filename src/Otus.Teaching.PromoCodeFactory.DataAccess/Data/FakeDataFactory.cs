@@ -74,7 +74,7 @@ namespace Otus.Teaching.PromoCodeFactory.DataAccess.Data
                 {
                     new Customer()
                     {
-                        Id = Guid.Parse("ef7f299f-92d7-459f-896e-078ed53ef99c"),
+                        Id = Guid.Parse("ef7f299f-92d7-459f-896e-078ed53ef99d"),
                         Email = "ivan_sergeev@mail.ru",
                         FirstName = "Иван",
                         LastName = "Петров",

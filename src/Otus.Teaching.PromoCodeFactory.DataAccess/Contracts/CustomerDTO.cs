@@ -15,6 +15,6 @@ namespace Otus.Teaching.PromoCodeFactory.DataAccess.Contracts
 
         public string Email { get; set; }
         public List<CustomerPreference> CustomerPreferences { get; set; }
-        public List<PromoCodeDTO> PromoCodes { get; set; }
+        public List<PromoCode> PromoCodes { get; set; }
     }
 }

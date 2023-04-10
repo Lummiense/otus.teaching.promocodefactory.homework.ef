@@ -8,10 +8,12 @@ namespace Otus.Teaching.PromoCodeFactory.WebHost.Mapping
 {
     public class CustomerViewMapProfile:Profile
     {
-        public CustomerViewMapProfile() 
+        public CustomerViewMapProfile()
         {
             CreateMap<CustomerDTO, CustomerResponse>()
-                .ForMember(c=>c.Preferences,map=>map.Ignore());
+                .ForMember(dest => dest.Preferences, opt => opt.MapFrom(src => src.CustomerPreferences.Where(x => x.CustomerId == src.Id).Select(p => p.Preference).ToList()));
+            //TODO: Настроить корректный маппинг CustomerDTO -> CustomerResponse
+            //.ForMember(c=>c.Preferences,map=>map.Ignore());
             CreateMap<PromoCodeDTO,PromoCodeShortResponse>().
                 ForMember(dest => dest.PartnerName, opt => opt.MapFrom(src => src.PartnerManager.FullName)).
                 ForMember(p =>p.Id,map =>map.Ignore());
@@ -26,7 +28,8 @@ namespace Otus.Teaching.PromoCodeFactory.WebHost.Mapping
                   ForMember(c => c.CustomerPreferences, map => map.Ignore());*/
 
             CreateMap<CreateOrEditCustomerRequest, CustomerDTO>().
-                ForMember(c => c.Id, map => map.Ignore()).                
+                ForMember(c => c.Id, map => map.Ignore()). 
+                ForMember(c=>c.FullName, map => map.Ignore()).
                 ForMember(c=>c.PromoCodes,map=>map.Ignore()).
                 ForMember(c=>c.CustomerPreferences,map=>map.Ignore());
             
