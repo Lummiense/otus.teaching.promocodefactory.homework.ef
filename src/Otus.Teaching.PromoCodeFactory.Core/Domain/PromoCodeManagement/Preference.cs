@@ -8,7 +8,7 @@ namespace Otus.Teaching.PromoCodeFactory.Core.Domain.PromoCodeManagement
         :BaseEntity
     {
         public string Name { get; set; }
-        public ICollection<PromoCode> PromoCodes { get; set; }
-        public ICollection<CustomerPreference> CustomerPreferences { get; set; }
+        public List<PromoCode> PromoCodes { get; set; }
+        public List<CustomerPreference> CustomerPreferences { get; set; }
     }
 }

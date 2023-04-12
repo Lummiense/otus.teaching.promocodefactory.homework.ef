@@ -14,7 +14,7 @@ namespace Otus.Teaching.PromoCodeFactory.WebHost.Mapping
                 .ForMember(dest => dest.Preferences, opt => opt.MapFrom(src => src.CustomerPreferences.Where(x => x.CustomerId == src.Id).Select(p => p.Preference).ToList()));
             //TODO: Настроить корректный маппинг CustomerDTO -> CustomerResponse
             //.ForMember(c=>c.Preferences,map=>map.Ignore());
-            CreateMap<PromoCodeDTO,PromoCodeShortResponse>().
+            CreateMap<PromoCode,PromoCodeShortResponse>().
                 ForMember(dest => dest.PartnerName, opt => opt.MapFrom(src => src.PartnerManager.FullName)).
                 ForMember(p =>p.Id,map =>map.Ignore());
             /*CreateMap<CustomerResponse, CustomerDTO>().
