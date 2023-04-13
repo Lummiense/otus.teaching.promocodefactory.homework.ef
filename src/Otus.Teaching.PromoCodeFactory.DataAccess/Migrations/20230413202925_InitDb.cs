@@ -131,7 +131,7 @@ namespace Otus.Teaching.PromoCodeFactory.DataAccess.Migrations
             migrationBuilder.InsertData(
                 table: "Customers",
                 columns: new[] { "Id", "Email", "FirstName", "LastName" },
-                values: new object[] { new Guid("ef7f299f-92d7-459f-896e-078ed53ef99c"), "ivan_sergeev@mail.ru", "Иван", "Петров" });
+                values: new object[] { new Guid("ef7f299f-92d7-459f-896e-078ed53ef99d"), "ivan_sergeev@mail.ru", "Иван", "Петров" });
 
             migrationBuilder.InsertData(
                 table: "Customers",
@@ -166,12 +166,12 @@ namespace Otus.Teaching.PromoCodeFactory.DataAccess.Migrations
             migrationBuilder.InsertData(
                 table: "CustomerPreferences",
                 columns: new[] { "CustomerId", "PreferenceId" },
-                values: new object[] { new Guid("ef7f299f-92d7-459f-896e-078ed53ef99c"), new Guid("ef7f299f-92d7-459f-896e-078ed53ef99c") });
+                values: new object[] { new Guid("ef7f299f-92d7-459f-896e-078ed53ef99d"), new Guid("ef7f299f-92d7-459f-896e-078ed53ef99c") });
 
             migrationBuilder.InsertData(
                 table: "CustomerPreferences",
                 columns: new[] { "CustomerId", "PreferenceId" },
-                values: new object[] { new Guid("ef7f299f-92d7-459f-896e-078ed53ef99c"), new Guid("c4bda62e-fc74-4256-a956-4760b3858cbd") });
+                values: new object[] { new Guid("ef7f299f-92d7-459f-896e-078ed53ef99d"), new Guid("c4bda62e-fc74-4256-a956-4760b3858cbd") });
 
             migrationBuilder.InsertData(
                 table: "CustomerPreferences",

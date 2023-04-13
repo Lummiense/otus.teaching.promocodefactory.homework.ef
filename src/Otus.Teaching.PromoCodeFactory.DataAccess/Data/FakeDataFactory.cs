@@ -128,12 +128,12 @@ namespace Otus.Teaching.PromoCodeFactory.DataAccess.Data
                 {
                     new CustomerPreference()
                     {
-                        CustomerId=Guid.Parse("ef7f299f-92d7-459f-896e-078ed53ef99c"),
+                        CustomerId=Guid.Parse("ef7f299f-92d7-459f-896e-078ed53ef99d"),
                         PreferenceId=Guid.Parse("ef7f299f-92d7-459f-896e-078ed53ef99c")
                     },
                     new CustomerPreference()
                     {
-                        CustomerId=Guid.Parse("ef7f299f-92d7-459f-896e-078ed53ef99c"),
+                        CustomerId=Guid.Parse("ef7f299f-92d7-459f-896e-078ed53ef99d"),
                         PreferenceId=Guid.Parse("c4bda62e-fc74-4256-a956-4760b3858cbd")
                     },
                     new CustomerPreference()

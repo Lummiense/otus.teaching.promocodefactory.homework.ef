@@ -9,7 +9,7 @@ using Otus.Teaching.PromoCodeFactory.DataAccess.Data;
 namespace Otus.Teaching.PromoCodeFactory.DataAccess.Migrations
 {
     [DbContext(typeof(DataContext))]
-    [Migration("20230404070635_InitDb")]
+    [Migration("20230413202925_InitDb")]
     partial class InitDb
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -127,7 +127,7 @@ namespace Otus.Teaching.PromoCodeFactory.DataAccess.Migrations
                     b.HasData(
                         new
                         {
-                            Id = new Guid("ef7f299f-92d7-459f-896e-078ed53ef99c"),
+                            Id = new Guid("ef7f299f-92d7-459f-896e-078ed53ef99d"),
                             Email = "ivan_sergeev@mail.ru",
                             FirstName = "Иван",
                             LastName = "Петров"
@@ -158,12 +158,12 @@ namespace Otus.Teaching.PromoCodeFactory.DataAccess.Migrations
                     b.HasData(
                         new
                         {
-                            CustomerId = new Guid("ef7f299f-92d7-459f-896e-078ed53ef99c"),
+                            CustomerId = new Guid("ef7f299f-92d7-459f-896e-078ed53ef99d"),
                             PreferenceId = new Guid("ef7f299f-92d7-459f-896e-078ed53ef99c")
                         },
                         new
                         {
-                            CustomerId = new Guid("ef7f299f-92d7-459f-896e-078ed53ef99c"),
+                            CustomerId = new Guid("ef7f299f-92d7-459f-896e-078ed53ef99d"),
                             PreferenceId = new Guid("c4bda62e-fc74-4256-a956-4760b3858cbd")
                         },
                         new

@@ -15,8 +15,8 @@ namespace Otus.Teaching.PromoCodeFactory.DataAccess.DataConfiguration
         {
             builder.HasData(FakeDataFactory.CustomerPreferences);
             builder.HasKey(k => new { k.CustomerId, k.PreferenceId });
-            builder.HasOne(k => k.Customer).WithMany(k => k.CustomerPreferences).HasForeignKey(k => k.CustomerId);
-            builder.HasOne(k => k.Preference).WithMany(k => k.CustomerPreferences).HasForeignKey(k => k.PreferenceId);
+            builder.HasOne<Customer>(c => c.Customer).WithMany(cp => cp.CustomerPreferences).HasForeignKey(fk => fk.CustomerId);
+            builder.HasOne<Preference>(p => p.Preference).WithMany(cp => cp.CustomerPreferences).HasForeignKey(fk => fk.PreferenceId);
         }
     }
 }
