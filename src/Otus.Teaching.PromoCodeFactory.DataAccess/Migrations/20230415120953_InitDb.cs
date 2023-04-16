@@ -47,7 +47,7 @@ namespace Otus.Teaching.PromoCodeFactory.DataAccess.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "CustomerPreferences",
+                name: "CustomerPreference",
                 columns: table => new
                 {
                     CustomerId = table.Column<Guid>(type: "TEXT", nullable: false),
@@ -55,15 +55,15 @@ namespace Otus.Teaching.PromoCodeFactory.DataAccess.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_CustomerPreferences", x => new { x.CustomerId, x.PreferenceId });
+                    table.PrimaryKey("PK_CustomerPreference", x => new { x.CustomerId, x.PreferenceId });
                     table.ForeignKey(
-                        name: "FK_CustomerPreferences_Customers_CustomerId",
+                        name: "FK_CustomerPreference_Customers_CustomerId",
                         column: x => x.CustomerId,
                         principalTable: "Customers",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
-                        name: "FK_CustomerPreferences_Preferences_PreferenceId",
+                        name: "FK_CustomerPreference_Preferences_PreferenceId",
                         column: x => x.PreferenceId,
                         principalTable: "Preferences",
                         principalColumn: "Id",
@@ -134,11 +134,6 @@ namespace Otus.Teaching.PromoCodeFactory.DataAccess.Migrations
                 values: new object[] { new Guid("ef7f299f-92d7-459f-896e-078ed53ef99d"), "ivan_sergeev@mail.ru", "Иван", "Петров" });
 
             migrationBuilder.InsertData(
-                table: "Customers",
-                columns: new[] { "Id", "Email", "FirstName", "LastName" },
-                values: new object[] { new Guid("ef7f299f-92d7-459f-896e-078ed53ef97e"), "ivanov@mail.ru", "Иван", "Иванов" });
-
-            migrationBuilder.InsertData(
                 table: "Preferences",
                 columns: new[] { "Id", "Name" },
                 values: new object[] { new Guid("ef7f299f-92d7-459f-896e-078ed53ef99c"), "Театр" });
@@ -164,26 +159,6 @@ namespace Otus.Teaching.PromoCodeFactory.DataAccess.Migrations
                 values: new object[] { new Guid("b0ae7aac-5493-45cd-ad16-87426a5e7665"), "Партнерский менеджер", "PartnerManager" });
 
             migrationBuilder.InsertData(
-                table: "CustomerPreferences",
-                columns: new[] { "CustomerId", "PreferenceId" },
-                values: new object[] { new Guid("ef7f299f-92d7-459f-896e-078ed53ef99d"), new Guid("ef7f299f-92d7-459f-896e-078ed53ef99c") });
-
-            migrationBuilder.InsertData(
-                table: "CustomerPreferences",
-                columns: new[] { "CustomerId", "PreferenceId" },
-                values: new object[] { new Guid("ef7f299f-92d7-459f-896e-078ed53ef99d"), new Guid("c4bda62e-fc74-4256-a956-4760b3858cbd") });
-
-            migrationBuilder.InsertData(
-                table: "CustomerPreferences",
-                columns: new[] { "CustomerId", "PreferenceId" },
-                values: new object[] { new Guid("ef7f299f-92d7-459f-896e-078ed53ef97e"), new Guid("c4bda62e-fc74-4256-a956-4760b3858cbd") });
-
-            migrationBuilder.InsertData(
-                table: "CustomerPreferences",
-                columns: new[] { "CustomerId", "PreferenceId" },
-                values: new object[] { new Guid("ef7f299f-92d7-459f-896e-078ed53ef97e"), new Guid("76324c47-68d2-472d-abb8-33cfa8cc0c84") });
-
-            migrationBuilder.InsertData(
                 table: "Employees",
                 columns: new[] { "Id", "AppliedPromocodesCount", "Email", "FirstName", "LastName", "RoleId" },
                 values: new object[] { new Guid("451533d5-d8d5-4a11-9c7b-eb9f14e1a32f"), 5, "owner@somemail.ru", "Иван", "Сергеев", new Guid("53729686-a368-4eeb-8bfa-cc69b6050d02") });
@@ -194,8 +169,8 @@ namespace Otus.Teaching.PromoCodeFactory.DataAccess.Migrations
                 values: new object[] { new Guid("f766e2bf-340a-46ea-bff3-f1700b435895"), 10, "andreev@somemail.ru", "Петр", "Андреев", new Guid("b0ae7aac-5493-45cd-ad16-87426a5e7665") });
 
             migrationBuilder.CreateIndex(
-                name: "IX_CustomerPreferences_PreferenceId",
-                table: "CustomerPreferences",
+                name: "IX_CustomerPreference_PreferenceId",
+                table: "CustomerPreference",
                 column: "PreferenceId");
 
             migrationBuilder.CreateIndex(
@@ -222,7 +197,7 @@ namespace Otus.Teaching.PromoCodeFactory.DataAccess.Migrations
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropTable(
-                name: "CustomerPreferences");
+                name: "CustomerPreference");
 
             migrationBuilder.DropTable(
                 name: "PromoCodes");

@@ -66,41 +66,42 @@ namespace Otus.Teaching.PromoCodeFactory.DataAccess.Data
             }
         };
 
-        public static IEnumerable<Customer> Customers
+        public static List<Customer> Customers
         {
             get
             {
+                var customerId = Guid.Parse("ef7f299f-92d7-459f-896e-078ed53ef99d");
                 var customers = new List<Customer>()
                 {
                     new Customer()
                     {
-                        Id = Guid.Parse("ef7f299f-92d7-459f-896e-078ed53ef99d"),
+                        Id = customerId,
                         Email = "ivan_sergeev@mail.ru",
                         FirstName = "Иван",
                         LastName = "Петров",
-                        /*
-                        CustomerPreferences= new List<CustomerPreference>
+
+                        /*CustomerPreferences= new List<CustomerPreference>()
                         {
                                 new CustomerPreference()
                                 {
-                                    CustomerId=Guid.Parse("ef7f299f-92d7-459f-896e-078ed53ef99c"),
+                                    CustomerId=customerId,
                                     PreferenceId=Guid.Parse("ef7f299f-92d7-459f-896e-078ed53ef99c")
                                 },
                                 new CustomerPreference()
                                 {
-                                    CustomerId=Guid.Parse("ef7f299f-92d7-459f-896e-078ed53ef99c"),
+                                    CustomerId=customerId,
                                     PreferenceId=Guid.Parse("c4bda62e-fc74-4256-a956-4760b3858cbd")
                                 }
                         }*/
                     },                          
                 
-                     new Customer()
+                    /* new Customer()
                     {
                         Id = Guid.Parse("ef7f299f-92d7-459f-896e-078ed53ef97e"),
                         Email = "ivanov@mail.ru",
                         FirstName = "Иван",
                         LastName = "Иванов",
-                        /*
+                        *//*
                         CustomerPreferences = new List<CustomerPreference>
                         {
                                 new CustomerPreference()
@@ -113,14 +114,14 @@ namespace Otus.Teaching.PromoCodeFactory.DataAccess.Data
                                         CustomerId=Guid.Parse("ef7f299f-92d7-459f-896e-078ed53ef97e"),
                                         PreferenceId=Guid.Parse("76324c47-68d2-472d-abb8-33cfa8cc0c84")
                                 }
-                        }*/
-                    }
+                        }*//*
+                    }*/
                 };
 
                 return customers;
             }
         }
-        public static IEnumerable<CustomerPreference> CustomerPreferences
+        public static List<CustomerPreference> CustomerPreferences
         {
             get
             {
@@ -136,16 +137,7 @@ namespace Otus.Teaching.PromoCodeFactory.DataAccess.Data
                         CustomerId=Guid.Parse("ef7f299f-92d7-459f-896e-078ed53ef99d"),
                         PreferenceId=Guid.Parse("c4bda62e-fc74-4256-a956-4760b3858cbd")
                     },
-                    new CustomerPreference()
-                    {
-                        CustomerId=Guid.Parse("ef7f299f-92d7-459f-896e-078ed53ef97e"),
-                        PreferenceId=Guid.Parse("c4bda62e-fc74-4256-a956-4760b3858cbd")
-                    },
-                    new CustomerPreference()
-                    {
-                        CustomerId=Guid.Parse("ef7f299f-92d7-459f-896e-078ed53ef97e"),
-                        PreferenceId=Guid.Parse("76324c47-68d2-472d-abb8-33cfa8cc0c84")
-                    }
+                    
                 };
                 return customerPereference;
 

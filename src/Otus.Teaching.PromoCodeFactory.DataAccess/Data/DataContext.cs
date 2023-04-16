@@ -21,7 +21,7 @@ namespace Otus.Teaching.PromoCodeFactory.DataAccess.Data
         public DbSet<Preference> Preferences { get; set; }
         public DbSet<Customer> Customers { get; set; }
         public DbSet<PromoCode> PromoCodes { get; set; }
-        public DbSet<CustomerPreference> CustomerPreferences { get; set; }
+        //public DbSet<CustomerPreference> CustomerPreferences { get; set; }
 
         
 

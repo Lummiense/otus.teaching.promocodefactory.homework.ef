@@ -9,7 +9,7 @@ using Otus.Teaching.PromoCodeFactory.DataAccess.Data;
 namespace Otus.Teaching.PromoCodeFactory.DataAccess.Migrations
 {
     [DbContext(typeof(DataContext))]
-    [Migration("20230413202925_InitDb")]
+    [Migration("20230415120953_InitDb")]
     partial class InitDb
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -131,13 +131,6 @@ namespace Otus.Teaching.PromoCodeFactory.DataAccess.Migrations
                             Email = "ivan_sergeev@mail.ru",
                             FirstName = "Иван",
                             LastName = "Петров"
-                        },
-                        new
-                        {
-                            Id = new Guid("ef7f299f-92d7-459f-896e-078ed53ef97e"),
-                            Email = "ivanov@mail.ru",
-                            FirstName = "Иван",
-                            LastName = "Иванов"
                         });
                 });
 
@@ -153,29 +146,7 @@ namespace Otus.Teaching.PromoCodeFactory.DataAccess.Migrations
 
                     b.HasIndex("PreferenceId");
 
-                    b.ToTable("CustomerPreferences");
-
-                    b.HasData(
-                        new
-                        {
-                            CustomerId = new Guid("ef7f299f-92d7-459f-896e-078ed53ef99d"),
-                            PreferenceId = new Guid("ef7f299f-92d7-459f-896e-078ed53ef99c")
-                        },
-                        new
-                        {
-                            CustomerId = new Guid("ef7f299f-92d7-459f-896e-078ed53ef99d"),
-                            PreferenceId = new Guid("c4bda62e-fc74-4256-a956-4760b3858cbd")
-                        },
-                        new
-                        {
-                            CustomerId = new Guid("ef7f299f-92d7-459f-896e-078ed53ef97e"),
-                            PreferenceId = new Guid("c4bda62e-fc74-4256-a956-4760b3858cbd")
-                        },
-                        new
-                        {
-                            CustomerId = new Guid("ef7f299f-92d7-459f-896e-078ed53ef97e"),
-                            PreferenceId = new Guid("76324c47-68d2-472d-abb8-33cfa8cc0c84")
-                        });
+                    b.ToTable("CustomerPreference");
                 });
 
             modelBuilder.Entity("Otus.Teaching.PromoCodeFactory.Core.Domain.PromoCodeManagement.Preference", b =>
