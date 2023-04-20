@@ -47,5 +47,7 @@ namespace Otus.Teaching.PromoCodeFactory.DataAccess.Repositories
         {
             throw new NotImplementedException();
         }
+
+        
     }
 }

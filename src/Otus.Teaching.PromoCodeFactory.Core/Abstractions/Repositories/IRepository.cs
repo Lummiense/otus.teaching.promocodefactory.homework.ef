@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq.Expressions;
 using System.Threading.Tasks;
 using Otus.Teaching.PromoCodeFactory.Core.Domain;
 
@@ -10,7 +11,7 @@ namespace Otus.Teaching.PromoCodeFactory.Core.Abstractions.Repositories
     {
         Task<List<T>> GetAllAsync();
         
-        Task<T> GetByIdAsync(Guid id);
+        Task<T>GetByIdAsync(Guid id);
         Task <Guid> AddAsync(T entity);
         Task <Guid> UpdateAsync(T entity);
         Task DeleteAsync(Guid id);

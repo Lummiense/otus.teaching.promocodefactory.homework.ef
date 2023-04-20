@@ -50,6 +50,18 @@ namespace Otus.Teaching.PromoCodeFactory.WebHost.Controllers
         {
             //TODO: Настроить корректную отдачу Preference
             var customer = await _customerService.GetCustomerByIdAsync(id);
+            if (customer==null)
+                return NotFound();
+            var preferences = customer.CustomerPreferences.Where(c => c.CustomerId == id).Select(p => p.Preference).ToList();            
+            var preferenceResponse = _mapper.Map<List<PreferenceResponse>>(preferences);
+            var customerResponse = new CustomerResponse()
+            {
+                Id = customer.Id,
+                FirstName = customer.FirstName,
+                LastName = customer.LastName,
+                Email = customer.Email,
+                Preferences= preferenceResponse                
+            };
                           
         
             return Ok(_mapper.Map<CustomerResponse>(customer));
@@ -67,7 +79,7 @@ namespace Otus.Teaching.PromoCodeFactory.WebHost.Controllers
             customer.CustomerPreferences = new List<CustomerPreference>();
             foreach(var item in request.PreferenceIds)
             {
-                customer.CustomerPreferences.Add(new CustomerPreference
+                customer.CustomerPreferences.Append(new CustomerPreference
                 {
                     PreferenceId = item,
                     CustomerId = customer.Id

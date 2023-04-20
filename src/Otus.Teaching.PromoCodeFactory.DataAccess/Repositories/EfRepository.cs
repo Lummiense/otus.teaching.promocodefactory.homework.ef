@@ -6,20 +6,33 @@ using System;
 using System.Collections.Generic;
 using System.Collections.Immutable;
 using System.Linq;
+using System.Linq.Expressions;
 using System.Security.Cryptography.X509Certificates;
 using System.Text;
 using System.Threading.Tasks;
 
 namespace Otus.Teaching.PromoCodeFactory.DataAccess.Repositories
 {
-        public class EfRepository <T> : IRepository<T>
+    
+    public class EfRepository <T> : IRepository<T>
       where T : BaseEntity
     {
+
         protected readonly DataContext _dbContext;
+        
         public EfRepository(DataContext dbContext)
         {
-            _dbContext = dbContext;
+            _dbContext = dbContext;            
         }
+
+        
+
+
+        /*private IQueryable<T> Include(params Expression<Func<T, object>>[] includeProperties)
+        {
+            IQueryable<T> query = _dbContext.Set<T>().AsNoTracking();
+            return includeProperties.Aggregate(query, (current, includeProperty) => current.Include(includeProperty));
+        }*/
 
         /// <summary>
         /// Получить из БД список всех сущностей
@@ -35,12 +48,14 @@ namespace Otus.Teaching.PromoCodeFactory.DataAccess.Repositories
         /// Получить сущность из БД по заданному id
         /// </summary>
         /// <param name="id">id интересующей сущности</param>
-        /// <returns>Интереующая сущность</returns>
-        public Task<T> GetByIdAsync(Guid id)
+        /// <returns>Интереcующая сущность</returns>
+        public  Task<T> GetByIdAsync(Guid id)
         {
-            var result = _dbContext.Set<T>().FirstOrDefault(x=>x.Id==id);
-            return Task.FromResult(result);
+            var entity = _dbContext.Set<T>().FirstOrDefault(x=>x.Id==id);
+            return Task.FromResult(entity);
         }
+            
+       
 
         /// <summary>
         /// Добавить новую сущность в БД

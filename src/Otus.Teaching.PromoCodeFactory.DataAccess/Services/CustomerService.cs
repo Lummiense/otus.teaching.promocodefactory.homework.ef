@@ -8,6 +8,8 @@ using Otus.Teaching.PromoCodeFactory.DataAccess.Repositories;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Linq.Expressions;
+using System.Security.Cryptography.X509Certificates;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -22,6 +24,9 @@ namespace Otus.Teaching.PromoCodeFactory.DataAccess.Services
             _mapper = mapper;
             _customerRepository = customerRepository;
         }
+
+        
+
 
         /// <summary>
         /// Добавить пользователя
@@ -60,14 +65,12 @@ namespace Otus.Teaching.PromoCodeFactory.DataAccess.Services
         /// <param name="id"></param>
         /// <returns>Пользователь</returns>
         public async Task<CustomerDTO> GetCustomerByIdAsync(Guid id)
-        {
-            var entity = await _customerRepository.GetByIdAsync(id);    
-            //var preferences = entity.CustomerPreferences.Where(x=>x.CustomerId== id);
+        { 
+            var entity =await _customerRepository.GetByIdAsync(id);
             var customer = _mapper.Map<CustomerDTO>(entity);
-            //customer.CustomerPreferences = entity.CustomerPreferences.Where(x=>x.CustomerId==id).ToList();
             return customer;
-        }   
-          
+        }
+
         /// <summary>
         /// Обновить пользователя в базе данных
         /// </summary>
