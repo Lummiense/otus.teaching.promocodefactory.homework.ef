@@ -11,10 +11,8 @@ namespace Otus.Teaching.PromoCodeFactory.DataAccess.Services
     public interface ICustomerService
     {       
 
-        Task<Guid> AddCustomerAsync(CustomerDTO customerDTO);     
-        Task DeleteCustomerAsync(Guid id);
-        Task<CustomerDTO> GetCustomerByIdAsync(Guid id);
-        Task<ICollection<CustomerDTO>> GetAllCustomersAsync();
+        Task <Guid> AddCustomerAsync (CustomerDTO customerDTO);
+        Task<CustomerDTO> GetCustomerByIdAsync(Guid id);       
         Task <Guid> UpdateCustomerAsync(CustomerDTO customerDTO);
     }
 }

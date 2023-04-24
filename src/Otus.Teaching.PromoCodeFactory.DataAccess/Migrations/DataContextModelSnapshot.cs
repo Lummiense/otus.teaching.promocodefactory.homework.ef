@@ -129,6 +129,13 @@ namespace Otus.Teaching.PromoCodeFactory.DataAccess.Migrations
                             Email = "ivan_sergeev@mail.ru",
                             FirstName = "Иван",
                             LastName = "Петров"
+                        },
+                        new
+                        {
+                            Id = new Guid("ef7f299f-92d7-459f-896e-078ed53ef97e"),
+                            Email = "ivanov@mail.ru",
+                            FirstName = "Иван",
+                            LastName = "Иванов"
                         });
                 });
 

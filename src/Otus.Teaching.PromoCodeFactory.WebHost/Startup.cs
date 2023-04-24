@@ -45,7 +45,9 @@ namespace Otus.Teaching.PromoCodeFactory.WebHost
             services.AddScoped(typeof(IRepository<Preference>), typeof(EfRepository<Preference>));
             services.AddScoped(typeof(IRepository<Customer>), typeof(EfRepository<Customer>));*/
             services.AddTransient(typeof(IRepository<>), typeof(EfRepository<>));
+            services.AddTransient<ICustomerRepository, CustomerRepository>();
             services.AddTransient<ICustomerService, CustomerService>();
+            
 
 
             services.AddOpenApiDocument(options =>

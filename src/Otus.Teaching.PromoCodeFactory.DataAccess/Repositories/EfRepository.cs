@@ -18,7 +18,7 @@ namespace Otus.Teaching.PromoCodeFactory.DataAccess.Repositories
       where T : BaseEntity
     {
 
-        protected readonly DataContext _dbContext;
+        protected DataContext _dbContext;
         
         public EfRepository(DataContext dbContext)
         {

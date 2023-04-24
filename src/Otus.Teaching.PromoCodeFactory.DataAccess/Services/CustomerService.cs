@@ -17,15 +17,15 @@ namespace Otus.Teaching.PromoCodeFactory.DataAccess.Services
 {
     public class CustomerService : EfRepository<Customer>,ICustomerService
     {
-        private readonly IMapper _mapper;        
-        private readonly IRepository<Customer> _customerRepository;
-        public CustomerService(IMapper mapper, IRepository<Customer> customerRepository, DataContext dbContext) : base(dbContext)
+        private readonly IMapper _mapper;
+        private readonly ICustomerRepository _customerRepository;        
+        public CustomerService(IMapper mapper,ICustomerRepository customerRepository, DataContext dbContext) : base(dbContext)
         {          
             _mapper = mapper;
-            _customerRepository = customerRepository;
+            _customerRepository = customerRepository;            
         }
 
-        
+
 
 
         /// <summary>
@@ -36,29 +36,29 @@ namespace Otus.Teaching.PromoCodeFactory.DataAccess.Services
         public async Task<Guid> AddCustomerAsync(CustomerDTO customerDTO)
         {
             var entity = _mapper.Map<Customer>(customerDTO);
-            var result = await _customerRepository.AddAsync(entity); 
-            await _customerRepository.SaveChangesAsync();   
+            var result = await _customerRepository.AddAsync(entity);
+            await _customerRepository.SaveChangesAsync();
             return result;
-        }            
-        /// <summary>
+        }
+        /*/// <summary>
         /// Удаление пользователя по ID
         /// </summary>
         /// <param name="id"></param>
         /// <returns></returns>
         public async Task DeleteCustomerAsync(Guid id)
         {
-            await _customerRepository.DeleteAsync(id);
-            await _customerRepository.SaveChangesAsync();
-        }              
+            await _customerService.DeleteAsync(id);
+            await _customerService.SaveChangesAsync();
+        }
         /// <summary>
         /// Получение списка пользователей
         /// </summary>
         /// <returns>Список пользователей</returns>
         public async Task<ICollection<CustomerDTO>> GetAllCustomersAsync()
         {
-            List<Customer> entities = await _customerRepository.GetAllAsync();
+            List<Customer> entities = await _customerService.GetAllAsync();
             return _mapper.Map<List<CustomerDTO>>(entities);
-        }
+        }*/
         /// <summary>
         /// Получение пользователя по ID
         /// </summary>

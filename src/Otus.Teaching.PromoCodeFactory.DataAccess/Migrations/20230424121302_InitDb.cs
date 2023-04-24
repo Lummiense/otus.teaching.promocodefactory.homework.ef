@@ -134,6 +134,11 @@ namespace Otus.Teaching.PromoCodeFactory.DataAccess.Migrations
                 values: new object[] { new Guid("ef7f299f-92d7-459f-896e-078ed53ef99d"), "ivan_sergeev@mail.ru", "Иван", "Петров" });
 
             migrationBuilder.InsertData(
+                table: "Customers",
+                columns: new[] { "Id", "Email", "FirstName", "LastName" },
+                values: new object[] { new Guid("ef7f299f-92d7-459f-896e-078ed53ef97e"), "ivanov@mail.ru", "Иван", "Иванов" });
+
+            migrationBuilder.InsertData(
                 table: "Preferences",
                 columns: new[] { "Id", "Name" },
                 values: new object[] { new Guid("ef7f299f-92d7-459f-896e-078ed53ef99c"), "Театр" });

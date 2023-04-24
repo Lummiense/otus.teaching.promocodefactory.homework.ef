@@ -21,13 +21,14 @@ namespace Otus.Teaching.PromoCodeFactory.WebHost.Controllers
     public class CustomersController:ControllerBase
         
     {
-        //private EfRepository<Customer> _customerRepository;
+        private ICustomerRepository _customerRepository;
         private ICustomerService _customerService;
         private IMapper _mapper;
                
-        public CustomersController(IMapper mapper, ICustomerService customerService)
+        public CustomersController(IMapper mapper, ICustomerRepository customerRepository, ICustomerService customerService)
         {         
             _mapper = mapper;
+            _customerRepository = customerRepository;
             _customerService = customerService;
         }
         /// <summary>
@@ -37,7 +38,7 @@ namespace Otus.Teaching.PromoCodeFactory.WebHost.Controllers
         [HttpGet]
         public async Task<ActionResult<CustomerShortResponse>> GetCustomersAsync()
         {
-            var customers = await _customerService.GetAllCustomersAsync();
+            var customers = await _customerRepository.GetAllAsync();
             return Ok(_mapper.Map<ICollection<CustomerShortResponse>>(customers));
         }
         /// <summary>
@@ -110,7 +111,7 @@ namespace Otus.Teaching.PromoCodeFactory.WebHost.Controllers
         [HttpDelete]
         public async Task<IActionResult> DeleteCustomer(Guid id)
         {
-            await _customerService.DeleteCustomerAsync(id);
+            await _customerRepository.DeleteAsync(id);
             //TODO: Удаление клиента вместе с выданными ему промокодами
             return Ok($"Пользователь с ID {id} удален");
         }
