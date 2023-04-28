@@ -40,15 +40,18 @@ namespace Otus.Teaching.PromoCodeFactory.DataAccess.Services
             await _customerRepository.SaveChangesAsync();
             return result;
         }
-        /*/// <summary>
+
+
+
+        /// <summary>
         /// Удаление пользователя по ID
         /// </summary>
         /// <param name="id"></param>
         /// <returns></returns>
         public async Task DeleteCustomerAsync(Guid id)
         {
-            await _customerService.DeleteAsync(id);
-            await _customerService.SaveChangesAsync();
+            await _customerRepository.DeleteAsync(id);
+            await _customerRepository.SaveChangesAsync();
         }
         /// <summary>
         /// Получение списка пользователей
@@ -56,9 +59,9 @@ namespace Otus.Teaching.PromoCodeFactory.DataAccess.Services
         /// <returns>Список пользователей</returns>
         public async Task<ICollection<CustomerDTO>> GetAllCustomersAsync()
         {
-            List<Customer> entities = await _customerService.GetAllAsync();
-            return _mapper.Map<List<CustomerDTO>>(entities);
-        }*/
+            ICollection<Customer> entities = await _customerRepository.GetAllAsync();
+            return _mapper.Map<ICollection<CustomerDTO>>(entities);
+        }
         /// <summary>
         /// Получение пользователя по ID
         /// </summary>
@@ -66,10 +69,12 @@ namespace Otus.Teaching.PromoCodeFactory.DataAccess.Services
         /// <returns>Пользователь</returns>
         public async Task<CustomerDTO> GetCustomerByIdAsync(Guid id)
         { 
-            var entity =await _customerRepository.GetByIdAsync(id);
+            var entity =await _customerRepository.GetCustomerByIdAsync(id);
             var customer = _mapper.Map<CustomerDTO>(entity);
             return customer;
         }
+
+        
 
         /// <summary>
         /// Обновить пользователя в базе данных

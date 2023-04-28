@@ -38,7 +38,7 @@ namespace Otus.Teaching.PromoCodeFactory.WebHost.Controllers
         [HttpGet]
         public async Task<ActionResult<CustomerShortResponse>> GetCustomersAsync()
         {
-            var customers = await _customerRepository.GetAllAsync();
+            var customers = await _customerService.GetAllCustomersAsync();
             return Ok(_mapper.Map<ICollection<CustomerShortResponse>>(customers));
         }
         /// <summary>

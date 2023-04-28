@@ -19,7 +19,7 @@ namespace Otus.Teaching.PromoCodeFactory.DataAccess.Repositories
         }
         public Task<Customer> GetCustomerByIdAsync(Guid id)
         {
-            var customer = _dbContext.Set<Customer>().Include(c => c.CustomerPreferences).Include(p=>p.PromoCodes).FirstOrDefault(x => x.Id == id);
+            var customer = _dbContext.Set<Customer>().Include(c => c.CustomerPreferences).FirstOrDefault(x => x.Id == id);
             return Task.FromResult(customer);
         }
 

@@ -9,10 +9,11 @@ using System.Threading.Tasks;
 namespace Otus.Teaching.PromoCodeFactory.DataAccess.Services
 {
     public interface ICustomerService
-    {       
-
+    {
+        Task <ICollection<CustomerDTO>> GetAllCustomersAsync();
         Task <Guid> AddCustomerAsync (CustomerDTO customerDTO);
-        Task<CustomerDTO> GetCustomerByIdAsync(Guid id);       
+        Task<CustomerDTO> GetCustomerByIdAsync(Guid id);
+        Task DeleteCustomerAsync(Guid id);
         Task <Guid> UpdateCustomerAsync(CustomerDTO customerDTO);
     }
 }
