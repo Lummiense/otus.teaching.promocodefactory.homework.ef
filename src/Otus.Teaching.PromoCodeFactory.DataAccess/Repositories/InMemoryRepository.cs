@@ -48,6 +48,9 @@ namespace Otus.Teaching.PromoCodeFactory.DataAccess.Repositories
             throw new NotImplementedException();
         }
 
-        
+        public Task AddRange(List<T> entities)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

@@ -24,15 +24,10 @@ namespace Otus.Teaching.PromoCodeFactory.DataAccess.Repositories
         {
             _dbContext = dbContext;            
         }
+            
 
-        
 
-
-        /*private IQueryable<T> Include(params Expression<Func<T, object>>[] includeProperties)
-        {
-            IQueryable<T> query = _dbContext.Set<T>().AsNoTracking();
-            return includeProperties.Aggregate(query, (current, includeProperty) => current.Include(includeProperty));
-        }*/
+       
 
         /// <summary>
         /// Получить из БД список всех сущностей
@@ -99,6 +94,9 @@ namespace Otus.Teaching.PromoCodeFactory.DataAccess.Repositories
             await _dbContext.SaveChangesAsync();
         }
 
-        
+        public async Task AddRange(List<T> entities)
+        {
+            await _dbContext.Set<T>().AddRangeAsync(entities);
+        }
     }
 }

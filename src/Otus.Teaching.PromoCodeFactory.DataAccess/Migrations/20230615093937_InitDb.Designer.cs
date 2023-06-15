@@ -9,7 +9,7 @@ using Otus.Teaching.PromoCodeFactory.DataAccess.Data;
 namespace Otus.Teaching.PromoCodeFactory.DataAccess.Migrations
 {
     [DbContext(typeof(DataContext))]
-    [Migration("20230424121302_InitDb")]
+    [Migration("20230615093937_InitDb")]
     partial class InitDb
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -154,6 +154,18 @@ namespace Otus.Teaching.PromoCodeFactory.DataAccess.Migrations
                     b.HasIndex("PreferenceId");
 
                     b.ToTable("CustomerPreference");
+
+                    b.HasData(
+                        new
+                        {
+                            CustomerId = new Guid("ef7f299f-92d7-459f-896e-078ed53ef99d"),
+                            PreferenceId = new Guid("ef7f299f-92d7-459f-896e-078ed53ef99c")
+                        },
+                        new
+                        {
+                            CustomerId = new Guid("ef7f299f-92d7-459f-896e-078ed53ef99d"),
+                            PreferenceId = new Guid("c4bda62e-fc74-4256-a956-4760b3858cbd")
+                        });
                 });
 
             modelBuilder.Entity("Otus.Teaching.PromoCodeFactory.Core.Domain.PromoCodeManagement.Preference", b =>

@@ -36,17 +36,16 @@ namespace Otus.Teaching.PromoCodeFactory.WebHost
         {
             services.AddControllers();
 
-            //services.AddAutoMapper(typeof(CustomerMappingProfile));
+           
             InstallAutoMapper(services);
             services.AddDbContext<DataContext>(x => 
-                x.UseSqlite(Configuration.GetConnectionString("db")));
-          /*  services.AddScoped(typeof(IRepository<Employee>), typeof(EfRepository<Employee>));
-            services.AddScoped(typeof(IRepository<Role>), typeof(EfRepository<Role>));
-            services.AddScoped(typeof(IRepository<Preference>), typeof(EfRepository<Preference>));
-            services.AddScoped(typeof(IRepository<Customer>), typeof(EfRepository<Customer>));*/
+                x.UseSqlite(Configuration.GetConnectionString("db")));         
             services.AddTransient(typeof(IRepository<>), typeof(EfRepository<>));
             services.AddTransient<ICustomerRepository, CustomerRepository>();
             services.AddTransient<ICustomerService, CustomerService>();
+            services.AddTransient<IPromoCodeRepository, PromoCodeRepository>();
+            services.AddTransient<IPromoCodeService, PromoCodeService>();
+            services.AddTransient<IEmployeeRepository, EmployeeRepository>();
             
 
 
@@ -58,7 +57,7 @@ namespace Otus.Teaching.PromoCodeFactory.WebHost
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
+        public void Configure(IApplicationBuilder app, IWebHostEnvironment env,DataContext dbContext)
         {
             if (env.IsDevelopment())
             {
@@ -67,14 +66,13 @@ namespace Otus.Teaching.PromoCodeFactory.WebHost
             else
             {
                 app.UseHsts();
-            }
-            //TODO: Добавить обработку исключений
+            }            
             app.UseOpenApi();
             app.UseSwaggerUi3(x =>
             {
                 x.DocExpansion = "list";
             });
-            
+            InitDB.Init(dbContext);
             app.UseHttpsRedirection();
 
             app.UseRouting();
@@ -98,12 +96,10 @@ namespace Otus.Teaching.PromoCodeFactory.WebHost
                 
                 cfg.AddProfile<CustomerViewMapProfile>();
                 cfg.AddProfile<CustomerMappingProfile>();
-               /* cfg.AddProfile<PromoCodeMappingProfile>();
-                cfg.AddProfile<PromoCodeViewMappingProfile>();*/
-                /* cfg.AddProfile<EmployeeMappingProfile>();
-                 cfg.AddProfile<PreferenceMappingProfile>();
-                 cfg.AddProfile<PromoCodeMappingProfile>();
-                 cfg.AddProfile<RoleMappingProfile>();*/
+                cfg.AddProfile<PreferenceMappingProfile>();
+                cfg.AddProfile<PromoCodeViewMappingProfile>();
+                cfg.AddProfile<PromoCodeMappingProfile>();
+
             });
             configuration.AssertConfigurationIsValid();
             return configuration;

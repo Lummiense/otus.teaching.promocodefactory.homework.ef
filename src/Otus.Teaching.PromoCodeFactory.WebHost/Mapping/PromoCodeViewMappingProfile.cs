@@ -9,15 +9,12 @@ namespace Otus.Teaching.PromoCodeFactory.WebHost.Mapping
     {
         public PromoCodeViewMappingProfile() 
         {
-            CreateMap<PromoCode, PromoCodeShortResponse>().
-            ForMember(p => p.Id, map => map.Ignore()).
-            ForMember(dest => dest.PartnerName, opt => opt.MapFrom(src => src.PartnerManager.FullName));
             
-
-            /*CreateMap<PromoCodeShortResponse, PromocodeDTO>().  
-                ForMember(dest => dest.PartnerManager.FirstName, opt => opt.MapFrom(src=>src.PartnerName)).
-                ForMember(p => p.Customer, map => map.Ignore()).                
-                ForMember(p => p.Preference, map => map.Ignore());*/
+            
+            //from PromoCodeDTO to PromoCodeShortResponse
+            CreateMap<PromoCodeDTO, PromoCodeShortResponse>().            
+            ForMember(dest => dest.PartnerName, opt => opt.MapFrom(src => (src.PartnerManager.FirstName + " " + src.PartnerManager.LastName)));           
+            
         }
     }
 }

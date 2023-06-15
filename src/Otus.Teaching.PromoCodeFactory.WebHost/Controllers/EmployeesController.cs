@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Otus.Teaching.PromoCodeFactory.Core.Abstractions.Repositories;
 using Otus.Teaching.PromoCodeFactory.Core.Domain.Administration;
+using Otus.Teaching.PromoCodeFactory.DataAccess.Repositories;
 using Otus.Teaching.PromoCodeFactory.WebHost.Models;
 
 namespace Otus.Teaching.PromoCodeFactory.WebHost.Controllers
@@ -18,10 +19,12 @@ namespace Otus.Teaching.PromoCodeFactory.WebHost.Controllers
         : ControllerBase
     {
         private readonly IRepository<Employee> _employeeRepository;
+        private readonly IEmployeeRepository _repository;
 
-        public EmployeesController(IRepository<Employee> employeeRepository)
+        public EmployeesController(IRepository<Employee> employeeRepository,IEmployeeRepository repository)
         {
             _employeeRepository = employeeRepository;
+            _repository = repository;
         }
         
         /// <summary>
@@ -51,8 +54,8 @@ namespace Otus.Teaching.PromoCodeFactory.WebHost.Controllers
         [HttpGet("{id:guid}")]
         public async Task<ActionResult<EmployeeResponse>> GetEmployeeByIdAsync(Guid id)
         {
-            var employee = await _employeeRepository.GetByIdAsync(id);
-
+            var employee = await _repository.GetEmployeeById(id);
+            var role = employee.Role;
             if (employee == null)
                 return NotFound();
 
@@ -62,6 +65,7 @@ namespace Otus.Teaching.PromoCodeFactory.WebHost.Controllers
                 Email = employee.Email,
                 Role = new RoleItemResponse()
                 {
+                    Id=role.Id,
                     Name = employee.Role.Name,
                     Description = employee.Role.Description
                 },

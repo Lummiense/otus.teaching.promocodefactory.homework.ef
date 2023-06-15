@@ -38,8 +38,9 @@ namespace Otus.Teaching.PromoCodeFactory.WebHost.Controllers
         [HttpGet]
         public async Task<ActionResult<CustomerShortResponse>> GetCustomersAsync()
         {
-            var customers = await _customerService.GetAllCustomersAsync();
-            return Ok(_mapper.Map<ICollection<CustomerShortResponse>>(customers));
+            var entities = await _customerRepository.GetAllAsync();
+            var customersDTO = _mapper.Map<List<CustomerDTO>>(entities);
+            return Ok(_mapper.Map<IEnumerable<CustomerShortResponse>>(customersDTO));
         }
         /// <summary>
         /// Получение пользователя по id
@@ -49,23 +50,14 @@ namespace Otus.Teaching.PromoCodeFactory.WebHost.Controllers
         [HttpGet("{id}")]
         public async Task<ActionResult<CustomerResponse>> GetCustomerAsync(Guid id)
         {
-            //TODO: Настроить корректную отдачу Preference
-            var customer = await _customerService.GetCustomerByIdAsync(id);
-            if (customer==null)
-                return NotFound();
-            var preferences = customer.CustomerPreferences.Where(c => c.CustomerId == id).Select(p => p.Preference).ToList();            
-            var preferenceResponse = _mapper.Map<List<PreferenceResponse>>(preferences);
-            var customerResponse = new CustomerResponse()
-            {
-                Id = customer.Id,
-                FirstName = customer.FirstName,
-                LastName = customer.LastName,
-                Email = customer.Email,
-                Preferences= preferenceResponse                
-            };
-                          
+            
+            var customerDTO = await _customerService.GetCustomerByIdAsync(id);
+            if (customerDTO == null)
+                return NotFound();            
+            var result = _mapper.Map<CustomerResponse>(customerDTO);
+                                  
         
-            return Ok(_mapper.Map<CustomerResponse>(customer));
+            return Ok(_mapper.Map<CustomerResponse>(result));
         }
         /// <summary>
         /// Добавить пользователя
@@ -75,19 +67,17 @@ namespace Otus.Teaching.PromoCodeFactory.WebHost.Controllers
         [HttpPost]
         public async Task<IActionResult> CreateCustomerAsync(CreateOrEditCustomerRequest request)
         {
-            var customer = _mapper.Map<CustomerDTO>(request);
-            customer.Id = Guid.NewGuid();
-            customer.CustomerPreferences = new List<CustomerPreference>();
-            foreach(var item in request.PreferenceIds)
+            var customerDTO = _mapper.Map<CustomerDTO>(request);
+            customerDTO.CustomerPreferences = new List<CustomerPreference>();
+            foreach (var item in request.PreferenceIds)
             {
-                customer.CustomerPreferences.Append(new CustomerPreference
+                customerDTO.CustomerPreferences.Add(new CustomerPreference
                 {
                     PreferenceId = item,
-                    CustomerId = customer.Id
-                });
-            }         
 
-            var result = await _customerService.AddCustomerAsync(customer);
+                } ); 
+            }
+            var result = await _customerService.AddCustomerAsync(customerDTO);
             return Ok($"Пользователь с ID {result} добавлен");
         }
         /// <summary>
@@ -96,10 +86,20 @@ namespace Otus.Teaching.PromoCodeFactory.WebHost.Controllers
         /// <param name="request"></param>
         /// <returns>Ответ с id измененного пользователя</returns>
         [HttpPut("{id}")]
-        public async Task<IActionResult> EditCustomersAsync(CreateOrEditCustomerRequest request)
+        public async Task<IActionResult> EditCustomersAsync(Guid id,CreateOrEditCustomerRequest request)
         {
-            var customer = _mapper.Map<CustomerDTO>(request);
-            var result = await _customerService.UpdateCustomerAsync(customer);
+            var customerDTO = _mapper.Map<CustomerDTO>(request);
+            customerDTO.Id = id;
+            customerDTO.CustomerPreferences = new List<CustomerPreference>();
+            foreach (var item in request.PreferenceIds)
+            {
+                customerDTO.CustomerPreferences.Add(new CustomerPreference
+                {
+                    PreferenceId = item,
+                    CustomerId = id,
+                });
+            }
+            var result = await _customerService.UpdateCustomerAsync(customerDTO);
             //TODO: Обновить данные клиента вместе с его предпочтениями
             return Ok($"Данные пользователя с ID {result} обновлены");
         }

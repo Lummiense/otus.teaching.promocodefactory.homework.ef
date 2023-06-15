@@ -164,6 +164,16 @@ namespace Otus.Teaching.PromoCodeFactory.DataAccess.Migrations
                 values: new object[] { new Guid("b0ae7aac-5493-45cd-ad16-87426a5e7665"), "Партнерский менеджер", "PartnerManager" });
 
             migrationBuilder.InsertData(
+                table: "CustomerPreference",
+                columns: new[] { "CustomerId", "PreferenceId" },
+                values: new object[] { new Guid("ef7f299f-92d7-459f-896e-078ed53ef99d"), new Guid("ef7f299f-92d7-459f-896e-078ed53ef99c") });
+
+            migrationBuilder.InsertData(
+                table: "CustomerPreference",
+                columns: new[] { "CustomerId", "PreferenceId" },
+                values: new object[] { new Guid("ef7f299f-92d7-459f-896e-078ed53ef99d"), new Guid("c4bda62e-fc74-4256-a956-4760b3858cbd") });
+
+            migrationBuilder.InsertData(
                 table: "Employees",
                 columns: new[] { "Id", "AppliedPromocodesCount", "Email", "FirstName", "LastName", "RoleId" },
                 values: new object[] { new Guid("451533d5-d8d5-4a11-9c7b-eb9f14e1a32f"), 5, "owner@somemail.ru", "Иван", "Сергеев", new Guid("53729686-a368-4eeb-8bfa-cc69b6050d02") });
