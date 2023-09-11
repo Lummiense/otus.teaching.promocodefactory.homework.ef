@@ -14,7 +14,9 @@ namespace Otus.Teaching.PromoCodeFactory.DataAccess.Data
     {
         public DataContext(DbContextOptions<DataContext> options) : base(options) 
         {
-            //Database.EnsureCreated();
+
+           /* Database.EnsureDeleted();
+            Database.EnsureCreated();*/
         }
         public DbSet<Employee> Employees { get; set; }
         public DbSet<Role> Roles { get; set; }

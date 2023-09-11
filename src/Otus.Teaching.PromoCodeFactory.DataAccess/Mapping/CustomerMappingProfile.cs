@@ -12,16 +12,16 @@ namespace Otus.Teaching.PromoCodeFactory.DataAccess.Mapping
         public CustomerMappingProfile() 
         { 
             CreateMap<Customer,CustomerDTO>();
-            CreateMap<PromoCode,PromoCodeDTO>();
+            
 
             CreateMap<CustomerDTO, Customer>();
                
-            CreateMap<PromoCodeDTO, PromoCode>().                
+            /*CreateMap<PromoCodeDTO, PromoCode>().                
                 ForMember(p => p.PartnetManagerId, map => map.Ignore()).
                 ForMember(p => p.CustomerId, map => map.Ignore()).
-                ForMember(p => p.PreferenceId, map => map.Ignore());
+                ForMember(p => p.PreferenceId, map => map.Ignore());*/
 
-
+            
         }
     }
 }

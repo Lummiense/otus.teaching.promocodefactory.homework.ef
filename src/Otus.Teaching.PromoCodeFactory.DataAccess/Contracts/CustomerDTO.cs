@@ -14,7 +14,7 @@ namespace Otus.Teaching.PromoCodeFactory.DataAccess.Contracts
         public string FullName => $"{FirstName} {LastName}";
 
         public string Email { get; set; }
-        public IEnumerable<CustomerPreference> CustomerPreferences { get; set; }
+        public ICollection<CustomerPreference> CustomerPreferences { get; set; }
         public List<PromoCode> PromoCodes { get; set; }
     }
 }

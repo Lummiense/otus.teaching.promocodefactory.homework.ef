@@ -10,11 +10,14 @@ namespace Otus.Teaching.PromoCodeFactory.DataAccess.Mapping
     public class EmployeeMappingProfile:Profile
     {
         public EmployeeMappingProfile() 
-        { 
-            CreateMap<Employee,EmployeeDTO>();
-            CreateMap<EmployeeDTO, Employee>()
-                .ForMember(i => i.Id, map => map.Ignore())
-                .ForMember(ri => ri.RoleId, map => map.Ignore());
+        {
+            CreateMap<Employee, EmployeeDTO>();
+                
+            
+            CreateMap<EmployeeDTO,Employee>()
+                .ForMember(d => d.FullName, map => map.Ignore());
+
+
         }
     }
 }

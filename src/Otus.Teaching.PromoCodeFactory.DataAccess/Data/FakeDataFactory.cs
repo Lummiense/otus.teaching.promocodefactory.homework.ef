@@ -7,7 +7,8 @@ using Otus.Teaching.PromoCodeFactory.Core.Domain.PromoCodeManagement;
 
 namespace Otus.Teaching.PromoCodeFactory.DataAccess.Data
 {
-    public static class FakeDataFactory   {
+    public static class FakeDataFactory
+    {
 
         public static IEnumerable<Employee> Employees => new List<Employee>()
         {
@@ -46,7 +47,7 @@ namespace Otus.Teaching.PromoCodeFactory.DataAccess.Data
                 Description = "Партнерский менеджер"
             }
         };
-        
+
         public static IEnumerable<Preference> Preferences => new List<Preference>()
         {
             new Preference()
@@ -70,12 +71,12 @@ namespace Otus.Teaching.PromoCodeFactory.DataAccess.Data
         {
             get
             {
-                var customerId = Guid.Parse("ef7f299f-92d7-459f-896e-078ed53ef99d");
+                
                 var customers = new List<Customer>()
                 {
                     new Customer()
                     {
-                        Id = customerId,
+                        Id = Guid.Parse("ef7f299f-92d7-459f-896e-078ed53ef99d"),
                         Email = "ivan_sergeev@mail.ru",
                         FirstName = "Иван",
                         LastName = "Петров",
@@ -134,14 +135,37 @@ namespace Otus.Teaching.PromoCodeFactory.DataAccess.Data
                     },
                     new CustomerPreference()
                     {
-                        CustomerId=Guid.Parse("ef7f299f-92d7-459f-896e-078ed53ef99d"),
+                        CustomerId=Guid.Parse("ef7f299f-92d7-459f-896e-078ed53ef97e"),
                         PreferenceId=Guid.Parse("c4bda62e-fc74-4256-a956-4760b3858cbd")
                     },
-                    
+
                 };
                 return customerPereference;
 
             }
         }
+        public static List<PromoCode> PromoCodes
+        {
+            get
+            {
+                var promoCodes = new List<PromoCode>()
+                {
+                    new PromoCode()
+                    {
+                        Id = Guid.Parse("2fc304b2-61ec-4c2c-9fc0-80eda981c1f3"),
+                        Code = "Promo",
+                        ServiceInfo = "Some info",
+                        BeginDate = DateTime.Now,
+                        EndDate = DateTime.Now.AddDays(5),
+                        PartnetManagerId = Guid.Parse("f766e2bf-340a-46ea-bff3-f1700b435895"),
+                        CustomerId = Guid.Parse("ef7f299f-92d7-459f-896e-078ed53ef99d"),
+                        PreferenceId = Guid.Parse("ef7f299f-92d7-459f-896e-078ed53ef99c")
+
+                    }
+                };
+                return promoCodes;
+            }
+        }
     }
 }
+ 
