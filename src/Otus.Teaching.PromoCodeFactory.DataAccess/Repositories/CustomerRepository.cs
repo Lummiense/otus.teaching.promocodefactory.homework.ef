@@ -18,10 +18,10 @@ namespace Otus.Teaching.PromoCodeFactory.DataAccess.Repositories
         public CustomerRepository(DataContext dbContext):base(dbContext) 
         {
         }
-        public Task<Customer> GetCustomerByIdAsync(Guid id)
+        public async Task<Customer> GetCustomerByIdAsync(Guid id)
         {
-            var customer = _dbContext.Set<Customer>().Include(c => c.CustomerPreferences).AsNoTracking().Include("CustomerPreferences.Preference").Include(p=>p.PromoCodes).AsNoTracking().FirstOrDefault(x => x.Id == id);
-            return Task.FromResult(customer);
+            var customer = await _dbContext.Set<Customer>().Include(c => c.CustomerPreferences).AsNoTracking().Include("CustomerPreferences.Preference").Include(p=>p.PromoCodes).AsNoTracking().FirstOrDefault(x => x.Id == id);
+            return customer;
         }
 
         public async Task<List<Customer>> GetCustomersByPreference(Expression<Func<Customer, bool>> predicate)
